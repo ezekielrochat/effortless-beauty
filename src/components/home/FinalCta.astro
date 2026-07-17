@@ -1,0 +1,20 @@
+---
+import { homeContent } from '@/config/home';
+import Button from '@/components/ui/Button.astro';
+
+const { finalCta } = homeContent;
+---
+
+<section id="book">
+  <div class="container-site flex min-h-[22rem] flex-col items-center justify-center py-20 text-center sm:min-h-[26rem] sm:py-28 lg:min-h-[28rem] lg:py-32">
+    <h2 class="text-3xl text-white sm:text-4xl">{finalCta.title}</h2>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <Button href={finalCta.primaryCta.href} variant="light" class="uppercase">
+        {finalCta.primaryCta.label}
+      </Button>
+      <Button href={finalCta.secondaryCta.href} variant="outline-light" class="uppercase">
+        {finalCta.secondaryCta.label}
+      </Button>
+    </div>
+  </div>
+</section>

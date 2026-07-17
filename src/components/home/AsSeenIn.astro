@@ -1,0 +1,27 @@
+---
+import { homeContent } from '@/config/home';
+import { media } from '@/config/media';
+---
+
+<section class="bg-[var(--color-charcoal)] py-5 sm:py-6">
+  <div class="container-site flex flex-col items-center gap-5 sm:flex-row sm:justify-between sm:gap-8">
+    <p class="shrink-0 font-heading text-[0.65rem] tracking-[0.22em] text-[var(--color-text-on-dark-muted)] uppercase">
+      {homeContent.asSeenIn.label}
+    </p>
+    <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:justify-end">
+      {
+        media.featuredIn.map((logo) => (
+          <li>
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              class="h-5 w-auto max-w-[7.5rem] object-contain opacity-90 sm:h-6"
+              loading="lazy"
+              decoding="async"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

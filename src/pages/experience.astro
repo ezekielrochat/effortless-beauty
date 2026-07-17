@@ -1,0 +1,46 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
+import PathsSection from '@/components/shared/PathsSection.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import { media } from '@/config/media';
+import { experienceContent, experienceSeo } from '@/config/pages/experience';
+
+const pathItems = experienceContent.paths.items.map((item) => ({
+  ...item,
+  image: media.pages[item.imageKey],
+}));
+---
+
+<SiteLayout
+  title={experienceSeo.title}
+  description={experienceSeo.description}
+  canonicalPath="/experience"
+>
+  <PageHero {...experienceContent.hero} />
+
+  <EditorialBand image={media.pages.experience} />
+
+  <ContentBlock
+    eyebrow="The promise"
+    title={experienceContent.promise.title}
+    description={experienceContent.promise.description}
+  >
+    <InfoList items={experienceContent.promise.items} columns={2} />
+  </ContentBlock>
+
+  <PathsSection
+    title={experienceContent.paths.title}
+    description={experienceContent.paths.description}
+    items={pathItems}
+  />
+
+  <SimpleCta
+    title="Ready for a calm wedding morning?"
+    secondaryLabel="View gallery"
+    secondaryHref="/gallery"
+  />
+</SiteLayout>

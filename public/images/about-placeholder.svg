@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="About placeholder">
+  <defs>
+    <linearGradient id="g" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ebe6df"/>
+      <stop offset="100%" stop-color="#b8b2aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#g)"/>
+  <text x="800" y="600" text-anchor="middle" fill="#6b737a" font-family="Inter, sans-serif" font-size="24">About / team photo placeholder</text>
+</svg>

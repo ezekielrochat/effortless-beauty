@@ -1,0 +1,76 @@
+---
+import Button from '@/components/ui/Button.astro';
+
+interface Cta {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  titleAccent?: string;
+  description: string;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+}
+
+const { eyebrow, title, titleAccent, description, primaryCta, secondaryCta } = Astro.props;
+---
+
+<section class="relative overflow-hidden border-b border-default bg-[var(--color-surface-elevated)]">
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,color-mix(in_oklab,var(--color-gold-500)_10%,transparent)_0%,transparent_55%)]"
+    aria-hidden="true"
+  />
+
+  <div class="relative container-site py-20 sm:py-24 lg:py-28">
+    <div class="mx-auto max-w-3xl text-center">
+      {
+        eyebrow && (
+          <p class="font-heading text-[0.68rem] font-semibold tracking-[0.24em] text-[var(--color-brand-500)] uppercase">
+            {eyebrow}
+          </p>
+        )
+      }
+
+      <h1
+        class:list={[
+          'text-[2.5rem] leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-[3.75rem]',
+          eyebrow ? 'mt-5' : undefined,
+        ]}
+      >
+        {title}
+        {
+          titleAccent && (
+            <>
+              {' '}
+              <span class="text-accent">{titleAccent}</span>
+            </>
+          )
+        }
+      </h1>
+
+      <p class="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-[var(--color-brand-700)] sm:mt-8 sm:text-xl">
+        {description}
+      </p>
+
+      {
+        (primaryCta || secondaryCta) && (
+          <div class="mt-10 flex flex-wrap justify-center gap-3.5">
+            {primaryCta && (
+              <Button href={primaryCta.href} variant="dark" size="lg" class="uppercase">
+                {primaryCta.label}
+              </Button>
+            )}
+            {secondaryCta && (
+              <Button href={secondaryCta.href} variant="outline" size="lg" class="uppercase">
+                {secondaryCta.label}
+              </Button>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

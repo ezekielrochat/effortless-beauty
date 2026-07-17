@@ -1,0 +1,44 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import { media } from '@/config/media';
+import { aboutContent, aboutSeo } from '@/config/pages/about';
+---
+
+<SiteLayout title={aboutSeo.title} description={aboutSeo.description} canonicalPath="/about">
+  <PageHero {...aboutContent.hero} />
+
+  <EditorialBand image={media.pages.about} />
+
+  <ContentBlock
+    eyebrow="Our story"
+    title={aboutContent.story.title}
+    width="narrow"
+  >
+    <div class="space-y-5 text-center">
+      {
+        aboutContent.story.paragraphs.map((paragraph) => (
+          <p class="text-base leading-relaxed text-muted sm:text-lg">{paragraph}</p>
+        ))
+      }
+    </div>
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="What guides us"
+    title={aboutContent.values.title}
+    class="bg-surface-muted"
+  >
+    <InfoList items={aboutContent.values.items} columns={3} />
+  </ContentBlock>
+
+  <SimpleCta
+    title="Ready to feel like yourself?"
+    secondaryLabel="See the experience"
+    secondaryHref="/experience"
+  />
+</SiteLayout>

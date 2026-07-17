@@ -1,0 +1,40 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import Button from '@/components/ui/Button.astro';
+import { pricingContent, pricingSeo } from '@/config/pages/pricing';
+---
+
+<SiteLayout title={pricingSeo.title} description={pricingSeo.description} canonicalPath="/pricing">
+  <PageHero {...pricingContent.hero} />
+
+  <ContentBlock
+    eyebrow="Packages"
+    title={pricingContent.packages.title}
+    description={pricingContent.packages.description}
+  >
+    <InfoList items={pricingContent.packages.items} columns={3} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Custom quotes"
+    title={pricingContent.note.title}
+    description={pricingContent.note.description}
+    width="narrow"
+    class="bg-surface-muted"
+  >
+    <div class="flex flex-wrap justify-center gap-3">
+      <Button href="/check-your-date" variant="dark" class="uppercase">
+        Request a quote
+      </Button>
+      <Button href="/faqs" variant="outline" class="uppercase">
+        Read FAQs
+      </Button>
+    </div>
+  </ContentBlock>
+
+  <SimpleCta title="Request your custom quote" primaryLabel="Check your date" />
+</SiteLayout>

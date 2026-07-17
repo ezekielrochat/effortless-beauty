@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="Studio placeholder">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ece8e2"/>
+      <stop offset="100%" stop-color="#bfb8b0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <text x="800" y="500" text-anchor="middle" fill="#6b737a" font-family="Inter, sans-serif" font-size="24">In-studio photo placeholder</text>
+</svg>

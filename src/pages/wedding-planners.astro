@@ -1,0 +1,53 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import Button from '@/components/ui/Button.astro';
+import { media } from '@/config/media';
+import { weddingPlannersContent, weddingPlannersSeo } from '@/config/pages/wedding-planners';
+---
+
+<SiteLayout
+  title={weddingPlannersSeo.title}
+  description={weddingPlannersSeo.description}
+  canonicalPath="/wedding-planners"
+>
+  <PageHero {...weddingPlannersContent.hero} />
+
+  <EditorialBand image={media.pages.weddingPlanners} />
+
+  <ContentBlock eyebrow="For planners" title={weddingPlannersContent.why.title}>
+    <InfoList items={weddingPlannersContent.why.items} columns={2} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Collaborate"
+    title={weddingPlannersContent.how.title}
+    description={weddingPlannersContent.how.description}
+    width="narrow"
+    class="bg-surface-muted"
+  >
+    <p class="mx-auto max-w-2xl text-center text-base leading-relaxed text-muted sm:text-lg">
+      {weddingPlannersContent.contact.description}
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <Button href={weddingPlannersContent.hero.primaryCta.href} variant="dark" class="uppercase">
+        Partner with us
+      </Button>
+      <Button href="/experience" variant="outline" class="uppercase">
+        See the experience
+      </Button>
+    </div>
+  </ContentBlock>
+
+  <SimpleCta
+    title="Planning a wedding with us?"
+    primaryLabel="Get in touch"
+    primaryHref="/contact"
+    secondaryLabel="Check a date"
+    secondaryHref="/check-your-date"
+  />
+</SiteLayout>

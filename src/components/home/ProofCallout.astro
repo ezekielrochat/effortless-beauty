@@ -1,0 +1,97 @@
+---
+import { homeContent } from '@/config/home';
+
+const { proof } = homeContent;
+---
+
+<section class="proof-callout pt-12 pb-2 sm:pt-16 sm:pb-3" aria-label="Wedding experience proof">
+  <div class="container-site">
+    <div class="proof-callout__inner">
+      <p class="proof-callout__eyebrow">{proof.eyebrow}</p>
+      <div class="proof-callout__stat-row">
+        <span class="proof-callout__rule" aria-hidden="true" />
+        <p class="proof-callout__stat">{proof.stat}</p>
+        <span class="proof-callout__rule" aria-hidden="true" />
+      </div>
+      <p class="proof-callout__label">{proof.label}</p>
+      <p class="proof-callout__description">{proof.description}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof-callout__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .proof-callout__eyebrow {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-brand-500);
+  }
+
+  .proof-callout__stat-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1.15rem;
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .proof-callout__rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in oklab, var(--color-gold-500) 70%, transparent)
+    );
+  }
+
+  .proof-callout__rule:last-child {
+    background: linear-gradient(
+      to left,
+      transparent,
+      color-mix(in oklab, var(--color-gold-500) 70%, transparent)
+    );
+  }
+
+  .proof-callout__stat {
+    margin: 0;
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: var(--color-brand-900);
+  }
+
+  .proof-callout__label {
+    margin: 0.65rem 0 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-gold-600);
+  }
+
+  .proof-callout__description {
+    margin: 1rem 0 0;
+    max-width: 28rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-brand-700);
+  }
+</style>

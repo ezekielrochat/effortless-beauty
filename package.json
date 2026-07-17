@@ -1,0 +1,22 @@
+{
+  "name": "effortless-beauty",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^11.0.1",
+    "@fontsource/inter": "^5.2.8",
+    "@lucide/astro": "^1.23.0",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.5",
+    "tailwindcss": "^4.3.2"
+  }
+}

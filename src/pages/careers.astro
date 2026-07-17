@@ -1,0 +1,47 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import Button from '@/components/ui/Button.astro';
+import { careersContent, careersSeo } from '@/config/pages/careers';
+---
+
+<SiteLayout title={careersSeo.title} description={careersSeo.description} canonicalPath="/careers">
+  <PageHero {...careersContent.hero} />
+
+  <ContentBlock eyebrow="Culture" title={careersContent.culture.title}>
+    <InfoList items={careersContent.culture.items} columns={3} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Open roles"
+    title={careersContent.openRoles.title}
+    description={careersContent.openRoles.description}
+    class="bg-surface-muted"
+  >
+    <InfoList items={careersContent.openRoles.items} columns={2} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Apply"
+    title={careersContent.apply.title}
+    description={careersContent.apply.description}
+    width="narrow"
+  >
+    <div class="flex justify-center">
+      <Button href={careersContent.apply.ctaHref} variant="dark" class="uppercase">
+        Email your interest
+      </Button>
+    </div>
+  </ContentBlock>
+
+  <SimpleCta
+    title="Want to join the team?"
+    primaryLabel="Email us"
+    primaryHref={careersContent.apply.ctaHref}
+    secondaryLabel="About us"
+    secondaryHref="/about"
+  />
+</SiteLayout>

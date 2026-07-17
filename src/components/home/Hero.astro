@@ -1,0 +1,82 @@
+---
+import { homeContent } from '@/config/home';
+import { media } from '@/config/media';
+import Button from '@/components/ui/Button.astro';
+import SiteImage from '@/components/ui/SiteImage.astro';
+
+const { hero } = homeContent;
+---
+
+<section class="relative overflow-hidden bg-[var(--color-surface-elevated)]">
+  <div class="frame-bleed pt-4 sm:pt-5 lg:pt-6">
+    <div class="grid overflow-hidden rounded-t-lg bg-[var(--color-cream)] lg:min-h-[min(82svh,50rem)] lg:grid-cols-2 lg:rounded-t-[0.625rem]">
+      <div class="flex items-center px-8 py-14 sm:px-12 sm:py-16 lg:px-14 lg:py-20 xl:px-16">
+        <div class="max-w-xl">
+          <h1 class="text-[2.65rem] leading-[1.05] tracking-[-0.01em] sm:text-5xl lg:text-[3.85rem] xl:text-[4.15rem]">
+            {hero.titleBefore}
+            <span class="mt-1 block text-accent sm:mt-1.5">{hero.titleAccent}</span>
+          </h1>
+
+          <p class="mt-8 max-w-lg text-lg leading-relaxed text-[var(--color-brand-700)] sm:mt-9 sm:text-xl sm:leading-relaxed">
+            {hero.description}
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-3.5 sm:mt-11">
+            <Button href={hero.primaryCta.href} variant="dark" size="lg" class="uppercase">
+              {hero.primaryCta.label}
+            </Button>
+            <Button href={hero.secondaryCta.href} variant="outline" size="lg" class="uppercase">
+              {hero.secondaryCta.label}
+            </Button>
+          </div>
+
+          <div class="hero-reviews mt-12 sm:mt-14">
+            <img
+              src={media.reviews.marks}
+              alt={media.reviews.alt}
+              class="h-8 w-auto sm:h-9"
+              width="140"
+              height="40"
+              loading="eager"
+              decoding="async"
+            />
+            <p class="hero-reviews__label">{hero.rating.label}</p>
+          </div>
+        </div>
+      </div>
+
+      <figure class="relative min-h-[28rem] sm:min-h-[32rem] lg:min-h-0">
+        <SiteImage
+          src={media.hero.src}
+          alt={media.hero.alt}
+          class="absolute inset-0 h-full w-full object-cover object-[54%_15%]"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-reviews {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 1.15rem 0.65rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-cream);
+  }
+
+  .hero-reviews__label {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-brand-900);
+    line-height: 1.2;
+  }
+</style>

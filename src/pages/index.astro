@@ -1,0 +1,46 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import AsSeenIn from '@/components/home/AsSeenIn.astro';
+import ProofCallout from '@/components/home/ProofCallout.astro';
+import CalmMorning from '@/components/home/CalmMorning.astro';
+import Process from '@/components/home/Process.astro';
+import Testimonials from '@/components/home/Testimonials.astro';
+import HowItWorks from '@/components/home/HowItWorks.astro';
+import PathsSection from '@/components/shared/PathsSection.astro';
+import Gallery from '@/components/home/Gallery.astro';
+import ExploreCards from '@/components/home/ExploreCards.astro';
+import FinalCta from '@/components/home/FinalCta.astro';
+import { homeContent, pageSeo } from '@/config/home';
+import { media } from '@/config/media';
+
+const pathItems = homeContent.paths.items.map((item) => ({
+  ...item,
+  image: media.pages[item.imageKey],
+}));
+---
+
+<SiteLayout description={pageSeo.description}>
+  <Hero />
+  <AsSeenIn />
+  <div class="bg-[linear-gradient(to_top,var(--color-beige)_0%,var(--color-cream)_50%,var(--color-cream)_100%)]">
+    <ProofCallout />
+    <CalmMorning />
+    <Process />
+    <Testimonials />
+  </div>
+  <div class="bg-[linear-gradient(180deg,var(--color-surface-elevated)_0%,var(--color-cream)_42%,var(--color-beige)_100%)]">
+    <HowItWorks />
+    <Gallery />
+  </div>
+  <PathsSection
+    eyebrow={homeContent.paths.eyebrow}
+    title={homeContent.paths.title}
+    description={homeContent.paths.description}
+    items={pathItems}
+  />
+  <div class="cta-band">
+    <ExploreCards />
+    <FinalCta />
+  </div>
+</SiteLayout>

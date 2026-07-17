@@ -1,0 +1,44 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import Button from '@/components/ui/Button.astro';
+import { media } from '@/config/media';
+import { onsiteContent, onsiteSeo } from '@/config/pages/onsite';
+---
+
+<SiteLayout title={onsiteSeo.title} description={onsiteSeo.description} canonicalPath="/on-site">
+  <PageHero {...onsiteContent.hero} />
+
+  <EditorialBand image={media.pages.onsite} />
+
+  <ContentBlock
+    eyebrow="On wedding morning"
+    title={onsiteContent.overview.title}
+    description={onsiteContent.overview.description}
+  >
+    <InfoList items={onsiteContent.overview.items} columns={3} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Best for"
+    title={onsiteContent.note.title}
+    description={onsiteContent.note.description}
+    width="narrow"
+    class="bg-surface-muted"
+  >
+    <div class="flex flex-wrap justify-center gap-3">
+      <Button href="/check-your-date" variant="dark" class="uppercase">
+        Check your date
+      </Button>
+      <Button href="/in-studio" variant="outline" class="uppercase">
+        Prefer in-studio?
+      </Button>
+    </div>
+  </ContentBlock>
+
+  <SimpleCta title="Check if your date is open" />
+</SiteLayout>

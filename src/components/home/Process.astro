@@ -1,0 +1,90 @@
+---
+import { homeContent } from '@/config/home';
+import { media } from '@/config/media';
+import Button from '@/components/ui/Button.astro';
+import SiteImage from '@/components/ui/SiteImage.astro';
+import { ChevronDown } from '@lucide/astro';
+
+const { process } = homeContent;
+---
+
+<section class="pt-3 pb-4 sm:pt-4 sm:pb-5">
+  <div class="frame-bleed">
+    <div class="frame-media bg-[var(--color-surface-elevated)]">
+      <div class="grid lg:grid-cols-2 lg:min-h-[44rem]">
+        <figure class="relative min-h-[24rem] lg:min-h-0">
+          <SiteImage
+            src={media.process.src}
+            alt={media.process.alt}
+            class="absolute inset-0 h-full w-full object-cover object-center"
+          />
+        </figure>
+
+        <div class="flex flex-col justify-center px-8 py-10 sm:px-12 sm:py-14 lg:px-14 lg:py-16">
+          <h2 class="text-3xl leading-tight sm:text-4xl">{process.title}</h2>
+
+          <div class="mt-8 min-h-[22rem] space-y-1 sm:min-h-[23rem]" data-process-accordion>
+            {
+              process.items.map((item, index) => (
+                <details
+                  class="group border-b border-[var(--color-border)] last:border-b-0"
+                  open={index === 0 ? true : undefined}
+                >
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
+                    <span class="font-medium text-accent">{item.title}</span>
+                    <ChevronDown
+                      size={16}
+                      strokeWidth={2}
+                      class="shrink-0 text-accent transition-transform group-open:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  {item.description && (
+                    <p class="pb-4 pr-8 text-sm leading-relaxed text-muted sm:text-base">
+                      {item.description}
+                    </p>
+                  )}
+                </details>
+              ))
+            }
+          </div>
+
+          <div class="mt-9 flex flex-wrap gap-3">
+            <Button href={process.primaryCta.href} variant="dark" class="uppercase">
+              {process.primaryCta.label}
+            </Button>
+            <Button href={process.secondaryCta.href} variant="outline" class="uppercase">
+              {process.secondaryCta.label}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initProcessAccordion() {
+    document.querySelectorAll('[data-process-accordion]').forEach((root) => {
+      if (!(root instanceof HTMLElement) || root.dataset.accordionReady === 'true') return;
+      root.dataset.accordionReady = 'true';
+
+      const detailsList = Array.from(root.querySelectorAll('details'));
+
+      detailsList.forEach((detail) => {
+        const summary = detail.querySelector('summary');
+        summary?.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          const willOpen = !detail.open;
+          detailsList.forEach((other) => {
+            other.open = willOpen && other === detail;
+          });
+        });
+      });
+    });
+  }
+
+  initProcessAccordion();
+  document.addEventListener('astro:page-load', initProcessAccordion);
+</script>

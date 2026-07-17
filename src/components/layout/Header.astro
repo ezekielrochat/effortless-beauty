@@ -1,0 +1,201 @@
+---
+import {
+  brandNav,
+  primaryNav,
+  moreNav,
+  utilityNav,
+  ctaNav,
+  isNavCurrent,
+} from '@/config/navigation';
+import Logo from '@/components/ui/Logo.astro';
+import Button from '@/components/ui/Button.astro';
+import { ChevronUp, Menu, X } from '@lucide/astro';
+
+const pathname = Astro.url.pathname;
+const moreIsCurrent = moreNav.some((item) => isNavCurrent(item.href, pathname));
+
+const navLinkClass =
+  'font-heading text-[0.68rem] tracking-[0.14em] uppercase transition-opacity hover:opacity-70';
+
+const mobileNavLinks = [...primaryNav, ...moreNav];
+---
+
+<header class="sticky top-0 z-50">
+  <div class="bg-[var(--color-charcoal)] text-[var(--color-text-on-dark-muted)]">
+    <div class="container-site flex items-center justify-between gap-4 py-2 text-[0.65rem] tracking-[0.18em] uppercase sm:text-xs">
+      <nav class="flex flex-wrap items-center" aria-label="Sister brands">
+        {
+          brandNav.map((item, index) => (
+            <span class="inline-flex items-center">
+              {index > 0 && <span class="mx-2 text-white/35" aria-hidden="true">|</span>}
+              <a
+                href={item.href}
+                class:list={[
+                  'transition-colors hover:text-white',
+                  item.current ? 'text-white' : undefined,
+                ]}
+                aria-current={item.current ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </span>
+          ))
+        }
+      </nav>
+
+      <nav class="hidden items-center sm:flex" aria-label="Utility">
+        {
+          utilityNav.map((item, index) => (
+            <span class="inline-flex items-center">
+              {index > 0 && <span class="mx-2 text-white/35" aria-hidden="true">|</span>}
+              <a
+                href={item.href}
+                class:list={[
+                  'transition-colors hover:text-white',
+                  isNavCurrent(item.href, pathname) ? 'text-white' : undefined,
+                ]}
+                aria-current={isNavCurrent(item.href, pathname) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </span>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+
+  <div class="border-b border-default bg-[var(--color-surface-elevated)]">
+    <div class="container-site flex items-center gap-4 py-4 lg:py-5">
+      <Logo />
+
+      <nav class="mx-auto hidden items-center gap-4 lg:flex lg:gap-5" aria-label="Primary">
+        {
+          primaryNav.map((item) => {
+            const current = isNavCurrent(item.href, pathname);
+            return (
+              <a
+                href={item.href}
+                class:list={[
+                  navLinkClass,
+                  current ? 'text-accent' : 'text-[var(--color-brand-900)]',
+                ]}
+                aria-current={current ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            );
+          })
+        }
+
+        <details class="group relative">
+          <summary
+            class:list={[
+              navLinkClass,
+              'flex cursor-pointer list-none items-center gap-1 [&::-webkit-details-marker]:hidden',
+              moreIsCurrent ? 'text-accent' : 'text-[var(--color-brand-900)]',
+            ]}
+          >
+            More
+            <ChevronUp
+              size={12}
+              strokeWidth={2.5}
+              class="transition-transform group-open:rotate-180"
+              aria-hidden="true"
+            />
+          </summary>
+          <ul
+            class="absolute top-full right-0 z-50 mt-3 min-w-[9.5rem] rounded-xl border border-default bg-[var(--color-surface-elevated)] py-2 shadow-sm"
+          >
+            {
+              moreNav.map((item) => {
+                const current = isNavCurrent(item.href, pathname);
+                return (
+                  <li>
+                    <a
+                      href={item.href}
+                      class:list={[
+                        navLinkClass,
+                        'block px-4 py-2.5 hover:bg-[var(--color-cream)]',
+                        current ? 'text-accent' : 'text-[var(--color-brand-900)]',
+                      ]}
+                      aria-current={current ? 'page' : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </details>
+      </nav>
+
+      <div class="ml-auto hidden items-center gap-3 lg:flex">
+        <Button href={ctaNav.href} variant="dark" size="sm" class="uppercase">
+          {ctaNav.label}
+        </Button>
+      </div>
+
+      <div class="ml-auto flex items-center gap-2 lg:hidden">
+        <Button href={ctaNav.href} variant="dark" size="sm" class="uppercase">
+          Book
+        </Button>
+
+        <details class="group relative">
+          <summary
+            class="inline-flex cursor-pointer list-none items-center justify-center rounded-full border border-default bg-[var(--color-surface-elevated)] p-2.5 text-[var(--color-brand-900)] transition-colors hover:bg-[var(--color-cream)] [&::-webkit-details-marker]:hidden"
+            aria-label="Open menu"
+          >
+            <Menu size={18} strokeWidth={2} class="group-open:hidden" aria-hidden="true" />
+            <X size={18} strokeWidth={2} class="hidden group-open:block" aria-hidden="true" />
+          </summary>
+          <div
+            class="absolute top-full right-0 z-50 mt-3 w-[min(18rem,calc(100vw-2.5rem))] rounded-xl border border-default bg-[var(--color-surface-elevated)] py-2 shadow-lg"
+          >
+            <nav aria-label="Mobile">
+              {
+                mobileNavLinks.map((item) => {
+                  const current = isNavCurrent(item.href, pathname);
+                  return (
+                    <a
+                      href={item.href}
+                      class:list={[
+                        navLinkClass,
+                        'block px-4 py-3 hover:bg-[var(--color-cream)]',
+                        current ? 'text-accent' : 'text-[var(--color-brand-900)]',
+                      ]}
+                      aria-current={current ? 'page' : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })
+              }
+            </nav>
+            <div class="mt-1 border-t border-default px-4 py-3">
+              {
+                utilityNav.map((item) => {
+                  const current = isNavCurrent(item.href, pathname);
+                  return (
+                    <a
+                      href={item.href}
+                      class:list={[
+                        navLinkClass,
+                        'block py-2',
+                        current ? 'text-accent' : 'text-[var(--color-text-muted)]',
+                      ]}
+                      aria-current={current ? 'page' : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })
+              }
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</header>

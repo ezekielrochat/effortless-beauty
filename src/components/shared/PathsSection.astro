@@ -1,0 +1,49 @@
+---
+import PathCards from '@/components/shared/PathCards.astro';
+
+interface PathItem {
+  title: string;
+  description: string;
+  href: string;
+  cta: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  items: readonly PathItem[];
+  class?: string;
+}
+
+const {
+  eyebrow = 'How you get ready',
+  title,
+  description,
+  items,
+  class: className = '',
+} = Astro.props;
+---
+
+<section class:list={['bg-surface-muted py-16 sm:py-20 lg:py-24', className]}>
+  <div class="container-site">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="font-heading text-[0.68rem] font-semibold tracking-[0.24em] text-[var(--color-brand-500)] uppercase">
+        {eyebrow}
+      </p>
+      <h2 class="mt-4 text-3xl leading-tight tracking-[-0.01em] sm:text-4xl lg:text-[2.75rem]">
+        {title}
+      </h2>
+      <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+        {description}
+      </p>
+    </div>
+  </div>
+  <div class="frame-bleed mt-12">
+    <PathCards items={items} />
+  </div>
+</section>

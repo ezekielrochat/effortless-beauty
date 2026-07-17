@@ -1,0 +1,48 @@
+---
+type Variant = 'dark' | 'outline' | 'light' | 'outline-light';
+type Size = 'sm' | 'md' | 'lg';
+
+interface Props {
+  href?: string;
+  variant?: Variant;
+  size?: Size;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+}
+
+const {
+  href,
+  variant = 'dark',
+  size = 'md',
+  class: className = '',
+  type = 'button',
+  disabled = false,
+} = Astro.props;
+
+const variants: Record<Variant, string> = {
+  dark: 'btn btn-dark',
+  outline: 'btn btn-outline',
+  light: 'btn btn-light',
+  'outline-light': 'btn btn-outline-light',
+};
+
+const sizes: Record<Size, string> = {
+  sm: 'px-5 py-2 text-xs',
+  md: 'px-7 py-3 text-sm',
+  lg: 'px-8 py-3.5 text-sm',
+};
+
+const classes = [variants[variant], sizes[size], className].join(' ');
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class={classes}
+  href={href}
+  type={href ? undefined : type}
+  disabled={href ? undefined : disabled}
+  aria-disabled={disabled || undefined}
+>
+  <slot />
+</Tag>

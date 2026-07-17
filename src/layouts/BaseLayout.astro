@@ -1,0 +1,57 @@
+---
+import '@/styles/global.css';
+import { siteConfig, envFlags, formatPageTitle, absoluteUrl, organizationSchema } from '@/config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description = siteConfig.seo.defaultDescription,
+  canonicalPath = Astro.url.pathname,
+  noindex = envFlags.noindex,
+} = Astro.props;
+
+const pageTitle = formatPageTitle(title);
+const canonical = absoluteUrl(canonicalPath);
+const ogImage = absoluteUrl(siteConfig.seo.ogImage);
+const schema = organizationSchema();
+---
+
+<!doctype html>
+<html lang={siteConfig.locale} data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://webfonts.fortfoundry.com" crossorigin />
+    <link rel="stylesheet" href="https://webfonts.fortfoundry.com/css/termina.css" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body class="min-h-screen bg-surface antialiased">
+    <slot />
+  </body>
+</html>

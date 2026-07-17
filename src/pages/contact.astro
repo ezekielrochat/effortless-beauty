@@ -1,0 +1,54 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import Button from '@/components/ui/Button.astro';
+import { contactContent, contactSeo } from '@/config/pages/contact';
+---
+
+<SiteLayout title={contactSeo.title} description={contactSeo.description} canonicalPath="/contact">
+  <PageHero {...contactContent.hero} />
+
+  <ContentBlock eyebrow="Reach out" title={contactContent.details.title} width="narrow">
+    <ul class="divide-y divide-[var(--color-border)] border-y border-default">
+      {
+        contactContent.details.items.map((item) => (
+          <li class="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+            <p class="font-heading text-[0.68rem] tracking-[0.16em] text-subtle uppercase">
+              {item.label}
+            </p>
+            {item.href ? (
+              <a
+                href={item.href}
+                class="text-lg text-[var(--color-brand-900)] transition-opacity hover:opacity-70 sm:text-right"
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                {item.value}
+              </a>
+            ) : (
+              <p class="text-lg text-[var(--color-brand-900)] sm:text-right">{item.value}</p>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Booking"
+    title={contactContent.note.title}
+    description={contactContent.note.description}
+    width="narrow"
+    class="bg-surface-muted"
+  >
+    <div class="flex justify-center">
+      <Button href={contactContent.note.cta.href} variant="dark" class="uppercase">
+        {contactContent.note.cta.label}
+      </Button>
+    </div>
+  </ContentBlock>
+
+  <SimpleCta title="Prefer to start with your date?" />
+</SiteLayout>

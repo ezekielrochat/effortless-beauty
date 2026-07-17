@@ -1,0 +1,73 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import { ChevronDown } from '@lucide/astro';
+import { faqsContent, faqsSeo } from '@/config/pages/faqs';
+---
+
+<SiteLayout title={faqsSeo.title} description={faqsSeo.description} canonicalPath="/faqs">
+  <PageHero {...faqsContent.hero} />
+
+  <section class="py-16 sm:py-20 lg:py-24">
+    <div class="container-site">
+      <div class="mx-auto max-w-3xl space-y-1" data-faq-accordion>
+        {
+          faqsContent.items.map((item, index) => (
+            <details
+              class="group border-b border-default last:border-b-0"
+              open={index === 0 ? true : undefined}
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-6 [&::-webkit-details-marker]:hidden">
+                <span class="text-left font-medium text-[var(--color-brand-900)] sm:text-lg">
+                  {item.question}
+                </span>
+                <ChevronDown
+                  size={16}
+                  strokeWidth={2}
+                  class="shrink-0 text-accent transition-transform group-open:rotate-180"
+                  aria-hidden="true"
+                />
+              </summary>
+              <p class="pb-6 pr-8 text-base leading-relaxed text-muted">{item.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <SimpleCta
+    title="Still have a question?"
+    primaryLabel="Contact us"
+    primaryHref="/contact"
+    secondaryLabel="Check your date"
+    secondaryHref="/check-your-date"
+  />
+</SiteLayout>
+
+<script>
+  function initFaqAccordion() {
+    document.querySelectorAll('[data-faq-accordion]').forEach((root) => {
+      if (!(root instanceof HTMLElement) || root.dataset.accordionReady === 'true') return;
+      root.dataset.accordionReady = 'true';
+
+      const detailsList = Array.from(root.querySelectorAll('details'));
+
+      detailsList.forEach((detail) => {
+        const summary = detail.querySelector('summary');
+        summary?.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          const willOpen = !detail.open;
+          detailsList.forEach((other) => {
+            other.open = willOpen && other === detail;
+          });
+        });
+      });
+    });
+  }
+
+  initFaqAccordion();
+  document.addEventListener('astro:page-load', initFaqAccordion);
+</script>
