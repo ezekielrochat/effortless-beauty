@@ -5,7 +5,7 @@ export const aboutContent = {
     titleAccent: 'you.',
     description:
       'We are a Knoxville wedding hair and makeup team built around calm mornings, lasting looks, and care for your whole party.',
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
     secondaryCta: { label: 'View gallery', href: '/gallery' },
   },
   story: {

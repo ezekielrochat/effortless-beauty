@@ -9,6 +9,9 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'static',
   adapter: vercel(),
+  redirects: {
+    '/check-your-date': '/contact',
+  },
   vite: {
     plugins: [tailwindcss()],
     resolve: {

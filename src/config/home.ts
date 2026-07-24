@@ -8,7 +8,7 @@ export const homeContent = {
     titleAccent: 'that lasts.',
     description:
       'A complete bridal beauty experience for brides across Knoxville, East TN, and the Smoky Mountains.',
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
     secondaryCta: { label: 'In-studio services', href: '/in-studio' },
     rating: {
       label: '435+ reviews',
@@ -57,7 +57,7 @@ export const homeContent = {
           'Bridesmaids, moms, flower girls — your whole party gets the same attention and care you do.',
       },
     ],
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
     secondaryCta: { label: 'In-studio services', href: '/in-studio' },
   },
 
@@ -116,7 +116,7 @@ export const homeContent = {
           'We show up on time, bring the good energy, and handle everything so you can just be present.',
       },
     ],
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
     secondaryCta: { label: 'In-studio services', href: '/in-studio' },
   },
 
@@ -159,8 +159,8 @@ export const homeContent = {
 
   finalCta: {
     title: 'Book your date now',
-    primaryCta: { label: 'Book your date', href: '/check-your-date' },
-    secondaryCta: { label: 'Get in touch', href: '/contact' },
+    primaryCta: { label: 'Book your date', href: '/contact' },
+    secondaryCta: { label: 'View pricing', href: '/pricing' },
   },
 } as const;
 

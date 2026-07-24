@@ -5,7 +5,7 @@ export const onsiteContent = {
     titleAccent: 'wedding morning.',
     description:
       'Luxury bridal hair and makeup at your venue, Airbnb, or getting-ready suite — so your morning stays calm and on schedule.',
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
     secondaryCta: { label: 'See pricing', href: '/pricing' },
   },
   overview: {

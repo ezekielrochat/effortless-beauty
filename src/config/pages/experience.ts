@@ -5,7 +5,7 @@ export const experienceContent = {
     titleAccent: 'not rushed.',
     description:
       'We handle every beauty detail — so you can stay present, feel like yourself, and walk into the day ready.',
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
     secondaryCta: { label: 'See how it works', href: '/#how-it-works' },
   },
   promise: {

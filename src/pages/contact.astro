@@ -1,14 +1,26 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
+import CheckDateForm from '@/components/contact/CheckDateForm.astro';
 import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
-import Button from '@/components/ui/Button.astro';
 import { contactContent, contactSeo } from '@/config/pages/contact';
 ---
 
 <SiteLayout title={contactSeo.title} description={contactSeo.description} canonicalPath="/contact">
   <PageHero {...contactContent.hero} />
+
+  <CheckDateForm />
+
+  <ContentBlock
+    eyebrow="Next steps"
+    title={contactContent.steps.title}
+    class="bg-surface-muted"
+    width="narrow"
+  >
+    <InfoList items={contactContent.steps.items} />
+  </ContentBlock>
 
   <ContentBlock eyebrow="Reach out" title={contactContent.details.title} width="narrow">
     <ul class="divide-y divide-[var(--color-border)] border-y border-default">
@@ -36,19 +48,11 @@ import { contactContent, contactSeo } from '@/config/pages/contact';
     </ul>
   </ContentBlock>
 
-  <ContentBlock
-    eyebrow="Booking"
-    title={contactContent.note.title}
-    description={contactContent.note.description}
-    width="narrow"
-    class="bg-surface-muted"
-  >
-    <div class="flex justify-center">
-      <Button href={contactContent.note.cta.href} variant="dark" class="uppercase">
-        {contactContent.note.cta.label}
-      </Button>
-    </div>
-  </ContentBlock>
-
-  <SimpleCta title="Prefer to start with your date?" />
+  <SimpleCta
+    title={contactContent.finalCta.title}
+    primaryLabel={contactContent.finalCta.primaryLabel}
+    primaryHref={contactContent.finalCta.primaryHref}
+    secondaryLabel={contactContent.finalCta.secondaryLabel}
+    secondaryHref={contactContent.finalCta.secondaryHref}
+  />
 </SiteLayout>

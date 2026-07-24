@@ -5,7 +5,7 @@ export const pricingContent = {
     titleAccent: 'wedding morning.',
     description:
       'Every wedding is a little different. Share your date, party size, and location — we will send a custom quote that fits.',
-    primaryCta: { label: 'Request a quote', href: '/check-your-date' },
+    primaryCta: { label: 'Request a quote', href: '/contact' },
     secondaryCta: { label: 'Read FAQs', href: '/faqs' },
   },
   packages: {

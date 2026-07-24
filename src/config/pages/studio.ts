@@ -5,7 +5,7 @@ export const studioContent = {
     titleAccent: 'Knoxville space.',
     description:
       'Come to us for trials, bridal beauty, and smaller parties in a calm, dedicated studio environment.',
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
     secondaryCta: { label: 'Get directions', href: '/contact' },
   },
   overview: {

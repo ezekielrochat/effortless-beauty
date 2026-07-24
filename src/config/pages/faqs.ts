@@ -1,3 +1,5 @@
+import { siteConfig } from '@/config/site';
+
 export const faqsContent = {
   hero: {
     eyebrow: 'FAQs',
@@ -5,8 +7,8 @@ export const faqsContent = {
     titleAccent: 'most often.',
     description:
       'A few quick answers to help you plan. Still unsure? Reach out — we are happy to help.',
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
-    secondaryCta: { label: 'Contact us', href: '/contact' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
+    secondaryCta: { label: 'Call us', href: siteConfig.contact.phoneHref },
   },
   items: [
     {

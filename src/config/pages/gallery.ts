@@ -5,7 +5,7 @@ export const galleryContent = {
     titleAccent: 'real mornings.',
     description:
       'A look at the hair, makeup, and wedding-day energy we create for Knoxville and East Tennessee brides.',
-    primaryCta: { label: 'Check your date', href: '/check-your-date' },
+    primaryCta: { label: 'Check your date', href: '/contact' },
   },
 } as const;
 

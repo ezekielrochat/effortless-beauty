@@ -9,7 +9,7 @@ import {
 } from '@/config/navigation';
 import Logo from '@/components/ui/Logo.astro';
 import Button from '@/components/ui/Button.astro';
-import { ChevronUp, Menu, X } from '@lucide/astro';
+import { ChevronDown, Menu, X } from '@lucide/astro';
 
 const pathname = Astro.url.pathname;
 const moreIsCurrent = moreNav.some((item) => isNavCurrent(item.href, pathname));
@@ -97,7 +97,7 @@ const mobileNavLinks = [...primaryNav, ...moreNav];
             ]}
           >
             More
-            <ChevronUp
+            <ChevronDown
               size={12}
               strokeWidth={2.5}
               class="transition-transform group-open:rotate-180"
