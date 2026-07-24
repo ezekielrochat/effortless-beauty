@@ -12,9 +12,9 @@ export interface FooterColumn {
 /** Sister-brand switcher in the top utility bar */
 export const brandNav: NavLink[] = [
   { label: 'Effortless', href: '#' },
-  { label: 'Beauty', href: 'https://effortless-beauty-ten.vercel.app/', current: true },
-  { label: 'Head Spa', href: 'https://effortless-head-spa.vercel.app/' },
-  { label: 'Glow', href: 'https://effortless-glow.vercel.app/' },
+  { label: 'Beauty', href: '/', current: true },
+  { label: 'Head Spa', href: 'https://effortless-head-spa.vercel.app' },
+  { label: 'Glow', href: 'https://effortless-glow.vercel.app' },
 ];
 
 export const utilityNav: NavLink[] = [
