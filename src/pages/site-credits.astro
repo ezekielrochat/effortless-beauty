@@ -1,0 +1,17 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import LegalArticle from '@/components/shared/LegalArticle.astro';
+import { siteCreditsContent } from '@/config/pages/legal';
+---
+
+<SiteLayout
+  title={siteCreditsContent.seoTitle}
+  description={siteCreditsContent.seoDescription}
+  canonicalPath="/site-credits"
+>
+  <LegalArticle
+    title={siteCreditsContent.title}
+    intro={siteCreditsContent.intro}
+    sections={[...siteCreditsContent.sections]}
+  />
+</SiteLayout>

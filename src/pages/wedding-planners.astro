@@ -6,7 +6,9 @@ import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
 import Button from '@/components/ui/Button.astro';
+import HoneyBookEmbed from '@/components/contact/HoneyBookEmbed.astro';
 import { media } from '@/config/media';
+import { siteConfig } from '@/config/site';
 import { weddingPlannersContent, weddingPlannersSeo } from '@/config/pages/wedding-planners';
 ---
 
@@ -18,6 +20,14 @@ import { weddingPlannersContent, weddingPlannersSeo } from '@/config/pages/weddi
   <PageHero {...weddingPlannersContent.hero} />
 
   <EditorialBand image={media.pages.weddingPlanners} />
+
+  <HoneyBookEmbed
+    id="planner-form"
+    placement={siteConfig.booking.honeybookPlacements.planners}
+    eyebrow="Planner questionnaire"
+    title="New wedding questionnaire"
+    description="This planner form is separate from the bride inquiry. Share the couple, date, and getting-ready plan and we will follow up."
+  />
 
   <ContentBlock eyebrow="For planners" title={weddingPlannersContent.why.title}>
     <InfoList items={weddingPlannersContent.why.items} columns={2} />
@@ -46,7 +56,7 @@ import { weddingPlannersContent, weddingPlannersSeo } from '@/config/pages/weddi
   <SimpleCta
     title="Planning a wedding with us?"
     primaryLabel="Check your date"
-    primaryHref="/contact"
+    primaryHref="/check-your-date"
     secondaryLabel="See the experience"
     secondaryHref="/experience"
   />

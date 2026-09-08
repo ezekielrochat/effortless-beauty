@@ -1,0 +1,170 @@
+---
+import { Star } from '@lucide/astro';
+import { reviewPageSize, reviews } from '@/config/reviews';
+import { reviewsContent } from '@/config/pages/reviews';
+
+function initials(name: string) {
+  return name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2);
+}
+
+function sourceLabel(source: string, date?: string) {
+  return date ? `${source} · ${date}` : source;
+}
+---
+
+<section class="reviews-wall-section py-10 sm:py-12 lg:py-14" aria-label="Client reviews">
+  <div class="container-site">
+    <p class="reviews-status text-center text-sm text-subtle" data-reviews-status>
+      {reviewsContent.wall.showingLabel}
+      {' '}
+      {Math.min(reviewPageSize, reviews.length)}
+      {' '}
+      {reviewsContent.wall.ofLabel}
+      {' '}
+      {reviews.length}
+      {' '}
+      {reviewsContent.wall.reviewsLabel}
+    </p>
+
+    <div class="reviews-grid mt-8 sm:mt-10" data-reviews-grid>
+      {
+        reviews.map((review, index) => (
+          <article class="review-card" hidden={index >= reviewPageSize || undefined}>
+            <div class="flex items-center gap-3">
+              <div
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-beige)] text-xs font-medium text-muted"
+                aria-hidden="true"
+              >
+                {initials(review.name)}
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-[var(--color-brand-900)]">{review.name}</p>
+                <p class="text-xs text-subtle">{sourceLabel(review.source, review.date)}</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-0.5 text-[var(--color-accent-strong)]" aria-label="5 out of 5 stars">
+              {Array.from({ length: 5 }).map(() => (
+                <Star size={13} fill="currentColor" stroke="currentColor" />
+              ))}
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-muted">{review.quote}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div
+      class="reviews-sentinel mt-10 flex justify-center"
+      data-reviews-sentinel
+      hidden={reviews.length <= reviewPageSize}
+    >
+      <p class="text-sm text-subtle">Loading more reviews…</p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ pageSize: reviewPageSize, totalCount: reviews.length, copy: reviewsContent.wall }}>
+  function initReviewsWall() {
+    const grid = document.querySelector('[data-reviews-grid]');
+    const sentinel = document.querySelector('[data-reviews-sentinel]');
+    const status = document.querySelector('[data-reviews-status]');
+
+    if (!(grid instanceof HTMLElement) || !(sentinel instanceof HTMLElement)) return;
+    if (grid.dataset.ready === 'true') return;
+    grid.dataset.ready = 'true';
+
+    const cards = Array.from(grid.querySelectorAll('.review-card'));
+    let visibleCount = Math.min(pageSize, cards.length);
+
+    function updateStatus() {
+      if (!(status instanceof HTMLElement)) return;
+      status.textContent = `${copy.showingLabel} ${visibleCount} ${copy.ofLabel} ${totalCount} ${copy.reviewsLabel}`;
+    }
+
+    function sentinelInRange() {
+      const rect = sentinel.getBoundingClientRect();
+      return rect.top < window.innerHeight + 480;
+    }
+
+    function revealMore() {
+      if (visibleCount >= cards.length) return false;
+
+      const next = Math.min(visibleCount + pageSize, cards.length);
+      for (let i = visibleCount; i < next; i += 1) {
+        cards[i]?.removeAttribute('hidden');
+      }
+      visibleCount = next;
+      updateStatus();
+
+      if (visibleCount >= cards.length) {
+        sentinel.hidden = true;
+        observer.disconnect();
+        window.removeEventListener('scroll', onScroll);
+        return false;
+      }
+
+      return true;
+    }
+
+    function loadWhileNeeded() {
+      while (visibleCount < cards.length && sentinelInRange()) {
+        if (!revealMore()) break;
+      }
+    }
+
+    function onScroll() {
+      loadWhileNeeded();
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) loadWhileNeeded();
+      },
+      { rootMargin: '480px 0px' },
+    );
+
+    observer.observe(sentinel);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    loadWhileNeeded();
+  }
+
+  initReviewsWall();
+  document.addEventListener('astro:page-load', initReviewsWall);
+</script>
+
+<style>
+  .reviews-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .reviews-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reviews-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .review-card {
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-elevated);
+    padding: 1.25rem 1.35rem;
+    box-shadow: 0 10px 30px -18px rgb(35 31 32 / 0.28);
+  }
+
+  .review-card[hidden] {
+    display: none;
+  }
+</style>

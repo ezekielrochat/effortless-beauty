@@ -15,18 +15,24 @@ interface PathItem {
 interface Props {
   eyebrow?: string;
   title: string;
+  titleAccent?: string;
   description: string;
   items: readonly PathItem[];
   class?: string;
+  headingLevel?: 'h1' | 'h2';
 }
 
 const {
   eyebrow = 'How you get ready',
   title,
+  titleAccent,
   description,
   items,
   class: className = '',
+  headingLevel = 'h2',
 } = Astro.props;
+
+const Heading = headingLevel;
 ---
 
 <section class:list={['bg-surface-muted py-16 sm:py-20 lg:py-24', className]}>
@@ -35,9 +41,10 @@ const {
       <p class="font-heading text-[0.68rem] font-semibold tracking-[0.24em] text-[var(--color-brand-500)] uppercase">
         {eyebrow}
       </p>
-      <h2 class="mt-4 text-3xl leading-tight tracking-[-0.01em] sm:text-4xl lg:text-[2.75rem]">
+      <Heading class="mt-4 text-3xl leading-tight tracking-[-0.01em] sm:text-4xl lg:text-[2.75rem]">
         {title}
-      </h2>
+        {titleAccent && <span class="text-accent"> {titleAccent}</span>}
+      </Heading>
       <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
         {description}
       </p>

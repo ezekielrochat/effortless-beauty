@@ -4,9 +4,11 @@ import PageHero from '@/components/shared/PageHero.astro';
 import EditorialBand from '@/components/shared/EditorialBand.astro';
 import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
+import QuoteBlock from '@/components/shared/QuoteBlock.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
 import Button from '@/components/ui/Button.astro';
 import { media } from '@/config/media';
+import { siteConfig } from '@/config/site';
 import { studioContent, studioSeo } from '@/config/pages/studio';
 ---
 
@@ -14,6 +16,8 @@ import { studioContent, studioSeo } from '@/config/pages/studio';
   <PageHero {...studioContent.hero} />
 
   <EditorialBand image={media.pages.studio} />
+
+  <QuoteBlock {...studioContent.quote} />
 
   <ContentBlock
     eyebrow="At the studio"
@@ -24,21 +28,35 @@ import { studioContent, studioSeo } from '@/config/pages/studio';
   </ContentBlock>
 
   <ContentBlock
-    eyebrow="Find us"
-    title={studioContent.note.title}
-    description={studioContent.note.description}
-    width="narrow"
+    eyebrow="Good fit"
+    title={studioContent.bestFor.title}
     class="bg-surface-muted"
   >
-    <div class="flex flex-wrap justify-center gap-3">
-      <Button href="/contact" variant="dark" class="uppercase">
-        Check your date
+    <InfoList items={studioContent.bestFor.items} columns={3} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Find us"
+    title={studioContent.visit.title}
+    description={studioContent.visit.description}
+    width="narrow"
+  >
+    <InfoList items={studioContent.visit.items} />
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <Button href={siteConfig.booking.mangomint.url} variant="dark" class="uppercase">
+        Book in-studio
       </Button>
-      <Button href="/contact" variant="outline" class="uppercase">
-        Get directions
+      <Button href="/on-site" variant="outline" class="uppercase">
+        Prefer on-site?
       </Button>
     </div>
   </ContentBlock>
 
-  <SimpleCta title="Book a studio appointment" />
+  <SimpleCta
+    title="Book a studio appointment"
+    primaryLabel="Book in-studio"
+    primaryHref={siteConfig.booking.mangomint.url}
+    secondaryLabel="See on-site"
+    secondaryHref="/on-site"
+  />
 </SiteLayout>

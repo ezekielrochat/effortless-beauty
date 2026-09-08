@@ -1,0 +1,17 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import LegalArticle from '@/components/shared/LegalArticle.astro';
+import { termsContent } from '@/config/pages/legal';
+---
+
+<SiteLayout
+  title={termsContent.seoTitle}
+  description={termsContent.seoDescription}
+  canonicalPath="/terms-of-service"
+>
+  <LegalArticle
+    title={termsContent.title}
+    updated={termsContent.updated}
+    sections={[...termsContent.sections]}
+  />
+</SiteLayout>

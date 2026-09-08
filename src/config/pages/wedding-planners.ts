@@ -7,7 +7,7 @@ export const weddingPlannersContent = {
     titleAccent: 'count on.',
     description:
       'We work alongside planners across Knoxville, East Tennessee, and the Smoky Mountains to keep wedding mornings calm, on time, and beautifully finished.',
-    primaryCta: { label: 'Partner with us', href: siteConfig.contact.emailHref },
+    primaryCta: { label: 'Partner with us', href: '#planner-form' },
     secondaryCta: { label: 'See the experience', href: '/experience' },
   },
   why: {

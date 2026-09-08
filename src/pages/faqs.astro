@@ -1,13 +1,16 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
 import { ChevronDown } from '@lucide/astro';
+import { media } from '@/config/media';
 import { faqsContent, faqsSeo } from '@/config/pages/faqs';
 ---
 
 <SiteLayout title={faqsSeo.title} description={faqsSeo.description} canonicalPath="/faqs">
   <PageHero {...faqsContent.hero} />
+  <EditorialBand image={media.pages.faqs} />
 
   <section class="py-16 sm:py-20 lg:py-24">
     <div class="container-site">
@@ -40,7 +43,7 @@ import { faqsContent, faqsSeo } from '@/config/pages/faqs';
   <SimpleCta
     title="Still have a question?"
     primaryLabel="Check your date"
-    primaryHref="/contact"
+    primaryHref="/check-your-date"
     secondaryLabel="View pricing"
     secondaryHref="/pricing"
   />

@@ -1,0 +1,17 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import LegalArticle from '@/components/shared/LegalArticle.astro';
+import { smsPrivacyContent } from '@/config/pages/legal';
+---
+
+<SiteLayout
+  title={smsPrivacyContent.seoTitle}
+  description={smsPrivacyContent.seoDescription}
+  canonicalPath="/sms-terms-privacy-policy"
+>
+  <LegalArticle
+    title={smsPrivacyContent.title}
+    intro={smsPrivacyContent.intro}
+    sections={[...smsPrivacyContent.sections]}
+  />
+</SiteLayout>

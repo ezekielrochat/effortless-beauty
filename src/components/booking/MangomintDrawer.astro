@@ -1,0 +1,169 @@
+---
+import { siteConfig } from '@/config/site';
+
+const bookingUrl = siteConfig.booking.mangomint.url;
+---
+
+<div
+  id="mangomint-drawer"
+  class="mangomint-drawer"
+  hidden
+  aria-hidden="true"
+>
+  <button
+    type="button"
+    class="mangomint-drawer__backdrop"
+    data-mangomint-close
+    tabindex="-1"
+    aria-label="Close booking form"
+  ></button>
+  <aside
+    class="mangomint-drawer__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mangomint-drawer-title"
+  >
+    <div class="mangomint-drawer__bar">
+      <p id="mangomint-drawer-title" class="mangomint-drawer__title">Book in-studio</p>
+      <button type="button" class="mangomint-drawer__close" data-mangomint-close>
+        Close
+      </button>
+    </div>
+    <iframe
+      id="mangomint-drawer-frame"
+      class="mangomint-drawer__frame"
+      title="In-studio booking"
+      data-src={bookingUrl}
+    ></iframe>
+  </aside>
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.getElementById('mangomint-drawer');
+    if (!root) return;
+
+    const frame = document.getElementById('mangomint-drawer-frame');
+
+    const open = () => {
+      if (frame && !frame.getAttribute('src')) {
+        frame.setAttribute('src', frame.dataset.src || '');
+      }
+      root.hidden = false;
+      root.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('mangomint-open');
+    };
+
+    const close = () => {
+      root.hidden = true;
+      root.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('mangomint-open');
+    };
+
+    document.addEventListener('click', (event) => {
+      const closeBtn = event.target.closest('[data-mangomint-close]');
+      if (closeBtn) {
+        event.preventDefault();
+        close();
+        return;
+      }
+
+      const link = event.target.closest('a[href*="booking.mangomint.com"]');
+      if (!link) return;
+      event.preventDefault();
+      open();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !root.hidden) close();
+    });
+  })();
+</script>
+
+<style>
+  .mangomint-drawer[hidden] {
+    display: none;
+  }
+
+  .mangomint-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+  }
+
+  .mangomint-drawer__backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgb(0 0 0 / 0.45);
+    cursor: pointer;
+  }
+
+  .mangomint-drawer__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    height: 100%;
+    width: min(28rem, 100vw);
+    flex-direction: column;
+    background: var(--color-surface-elevated, #fff);
+    box-shadow: -16px 0 40px rgb(0 0 0 / 0.18);
+    animation: mangomint-slide 280ms ease-out;
+  }
+
+  .mangomint-drawer__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.9rem 1.15rem;
+  }
+
+  .mangomint-drawer__title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-brand-900);
+  }
+
+  .mangomint-drawer__close {
+    border: 0;
+    background: transparent;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-brand-700);
+    cursor: pointer;
+  }
+
+  .mangomint-drawer__close:hover {
+    color: var(--color-brand-900);
+  }
+
+  .mangomint-drawer__frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: #fff;
+  }
+
+  :global(body.mangomint-open) {
+    overflow: hidden;
+  }
+
+  @keyframes mangomint-slide {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+</style>

@@ -1,3 +1,5 @@
+import { featuredHomeReviews } from '@/config/reviews';
+
 /**
  * Homepage copy — matches homepage-design-v2-desktop.png in context/
  */
@@ -8,10 +10,10 @@ export const homeContent = {
     titleAccent: 'that lasts.',
     description:
       'A complete bridal beauty experience for brides across Knoxville, East TN, and the Smoky Mountains.',
-    primaryCta: { label: 'Check your date', href: '/contact' },
+    primaryCta: { label: 'Check your date', href: '/check-your-date' },
     secondaryCta: { label: 'In-studio services', href: '/in-studio' },
     rating: {
-      label: '435+ reviews',
+      label: '220+ Google reviews',
     },
   },
 
@@ -21,8 +23,8 @@ export const homeContent = {
 
   proof: {
     eyebrow: 'Proven on the big day',
-    stat: '1,000+',
-    label: 'successful weddings',
+    stat: '500+',
+    label: 'brides, just like you',
     description:
       'From intimate elopements to full bridal parties — Knoxville brides trust us to get it right.',
   },
@@ -57,44 +59,14 @@ export const homeContent = {
           'Bridesmaids, moms, flower girls — your whole party gets the same attention and care you do.',
       },
     ],
-    primaryCta: { label: 'Check your date', href: '/contact' },
+    primaryCta: { label: 'Check your date', href: '/check-your-date' },
     secondaryCta: { label: 'In-studio services', href: '/in-studio' },
   },
 
   testimonials: {
     title: "Don't just take our word for it.",
-    items: [
-      {
-        name: 'Jane Doe',
-        quote:
-          'We had a great experience with Effortless Beauty! I used them for my wedding hair and makeup and got so many compliments. They did a great job nailing my vintage hair updo.',
-      },
-      {
-        name: 'Jane Doe',
-        quote:
-          'Effortless Beauty made my wedding morning so calm and special. I felt like the best version of myself.',
-      },
-      {
-        name: 'Jane Doe',
-        quote:
-          'The team was professional, kind, and so talented. My hair and makeup lasted all day and night.',
-      },
-      {
-        name: 'Jane Doe',
-        quote:
-          'From the trial to the wedding day, everything was seamless. I cannot recommend them enough.',
-      },
-      {
-        name: 'Jane Doe',
-        quote:
-          'All of my girls loved their hair and makeup! I cannot thank you all enough for making us feel so beautiful.',
-      },
-      {
-        name: 'Jane Doe',
-        quote:
-          'The ladies at Effortless Beauty were an absolute dream to work with from booking to the big day.',
-      },
-    ],
+    cta: { label: 'Read all reviews', href: '/reviews' },
+    items: featuredHomeReviews,
   },
 
   howItWorks: {
@@ -116,7 +88,7 @@ export const homeContent = {
           'We show up on time, bring the good energy, and handle everything so you can just be present.',
       },
     ],
-    primaryCta: { label: 'Check your date', href: '/contact' },
+    primaryCta: { label: 'Check your date', href: '/check-your-date' },
     secondaryCta: { label: 'In-studio services', href: '/in-studio' },
   },
 
@@ -159,7 +131,7 @@ export const homeContent = {
 
   finalCta: {
     title: 'Book your date now',
-    primaryCta: { label: 'Book your date', href: '/contact' },
+    primaryCta: { label: 'Book your date', href: '/check-your-date' },
     secondaryCta: { label: 'View pricing', href: '/pricing' },
   },
 } as const;

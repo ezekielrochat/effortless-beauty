@@ -3,13 +3,16 @@ import SiteLayout from '@/layouts/SiteLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
 import Button from '@/components/ui/Button.astro';
+import { media } from '@/config/media';
 import { careersContent, careersSeo } from '@/config/pages/careers';
 ---
 
 <SiteLayout title={careersSeo.title} description={careersSeo.description} canonicalPath="/careers">
   <PageHero {...careersContent.hero} />
+  <EditorialBand image={media.pages.careers} />
 
   <ContentBlock eyebrow="Culture" title={careersContent.culture.title}>
     <InfoList items={careersContent.culture.items} columns={3} />

@@ -1,0 +1,21 @@
+---
+interface Props {
+  text: string;
+  name: string;
+  role?: string;
+}
+
+const { text, name, role } = Astro.props;
+---
+
+<section class="bg-surface-muted py-16 sm:py-20">
+  <blockquote class="container-site mx-auto max-w-3xl text-center">
+    <p class="text-xl leading-relaxed text-[var(--color-brand-900)] sm:text-2xl">
+      “{text}”
+    </p>
+    <footer class="mt-6 text-sm tracking-wide text-muted uppercase">
+      <cite class="not-italic font-medium text-[var(--color-brand-900)]">{name}</cite>
+      {role && <span> · {role}</span>}
+    </footer>
+  </blockquote>
+</section>

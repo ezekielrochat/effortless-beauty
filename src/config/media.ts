@@ -1,7 +1,18 @@
+import { blobs } from '@/config/blob-manifest';
+
 /**
  * Image paths and alt text.
- * Photography sourced from effortless-collective shared assets.
+ * Photography lives on Vercel Blob. Brand marks stay in /public.
  */
+
+const photo = (src: string, alt: string) => ({ src, alt });
+
+const galleryItems = Object.entries(blobs)
+  .filter(([key]) => key.startsWith('gallery'))
+  .sort((a, b) => Number(a[0].replace('gallery', '')) - Number(b[0].replace('gallery', '')))
+  .map(([, src], index) =>
+    photo(src, `Wedding hair and makeup look ${index + 1} by Effortless Beauty`),
+  );
 
 export const media = {
   logo: {
@@ -11,14 +22,8 @@ export const media = {
     fancyWhite: '/brand/logo-fancy-white.svg',
     alt: 'Effortless Beauty',
   },
-  og: {
-    src: '/images/hero-bride.jpg',
-    alt: 'Effortless Beauty wedding hair and makeup',
-  },
-  hero: {
-    src: '/images/hero-bride.jpg',
-    alt: 'Bride in white lace gown standing before an ornate gold mirror',
-  },
+  og: photo(blobs.og, 'Effortless Beauty wedding hair and makeup'),
+  hero: photo(blobs.hero, 'Bride in a finished wedding look with soft waves, veil, and bouquet'),
   reviews: {
     marks: '/images/reviews/reviews-marks.png',
     alt: 'The Knot, WeddingWire, and Google review badges',
@@ -30,118 +35,56 @@ export const media = {
     { src: '/images/featured-in/bride.png', alt: 'Rock n Roll Bride' },
     { src: '/images/featured-in/us-weekly.png', alt: 'Us Weekly' },
   ],
-  calmMorning: {
-    src: '/images/calm-morning.jpg',
-    alt: 'Bride in a garden setting holding a bouquet',
-  },
-  process: {
-    src: '/images/process-couple.jpg',
-    alt: 'Bride and groom under a veil',
-  },
+  calmMorning: photo(blobs.calmMorning, 'Bride and groom smiling together after getting ready'),
+  process: photo(blobs.process, 'Makeup artist applying eyeshadow for a bride getting ready'),
+  grace: photo(blobs.grace, 'Grace Rochat, owner of Effortless Beauty'),
   howItWorks: [
-    {
-      src: '/images/step-book.jpg',
-      alt: 'Bride in a lace gown and veil holding a white and blue bouquet',
-    },
-    {
-      src: '/images/step-plan.jpg',
-      alt: 'Bride smiling while a makeup artist applies her look',
-    },
-    {
-      src: '/images/step-enjoy.jpg',
-      alt: 'Bride and groom smiling under a veil',
-    },
+    photo(blobs.howItWorks1, 'Makeup artist applying blush on a wedding morning'),
+    photo(blobs.howItWorks2, 'Stylist blow-drying a bride’s hair'),
+    photo(blobs.howItWorks3, 'Bride smiling after hair and makeup are finished'),
   ],
   gallery: {
-    hero: {
-      src: '/images/gallery-hero.jpg',
-      alt: 'Bride and bridesmaids in blush dresses laughing outdoors',
-    },
-    grid: [
-      {
-        src: '/images/gallery-1.jpg',
-        alt: 'Bride looking over her shoulder in a lace open-back gown',
-      },
-      {
-        src: '/images/gallery-2.jpg',
-        alt: 'Bride and groom under a flowing veil',
-      },
-      {
-        src: '/images/gallery-3.jpg',
-        alt: 'Bride and groom sharing a kiss outdoors',
-      },
-      {
-        src: '/images/gallery-4.jpg',
-        alt: 'Bride smiling on a wooded overlook in a lace gown',
-      },
-      {
-        src: '/images/gallery-5.jpg',
-        alt: 'Bride from behind in a strapless gown overlooking autumn trees',
-      },
+    hero: photo(blobs.homeGalleryHero, 'Bridal party getting ready together'),
+    preview: [
+      photo(blobs.homeGallery1, 'Wedding hair and makeup detail'),
+      photo(blobs.homeGallery2, 'Bride and party in the getting-ready suite'),
+      photo(blobs.homeGallery3, 'Finished bridal look before the ceremony'),
+      photo(blobs.homeGallery4, 'Soft wedding-day hair and makeup'),
+      photo(blobs.homeGallery5, 'Bride and bridesmaids after styling'),
     ],
+    grid: galleryItems,
   },
   explore: [
-    {
-      src: '/images/explore-about.jpg',
-      alt: 'Bride surrounded by bridesmaids in a bright suite',
-    },
-    {
-      src: '/images/explore-faq.jpg',
-      alt: 'Bride getting makeup applied on her wedding morning',
-    },
-    {
-      src: '/images/explore-gallery.jpg',
-      alt: 'Bride and bridesmaids posing outdoors with bouquets',
-    },
+    photo(blobs.exploreAbout, 'Bride surrounded by bridesmaids'),
+    photo(blobs.exploreFaq, 'Bride having makeup applied'),
+    photo(blobs.exploreGallery, 'Bridal party after hair and makeup'),
   ],
-  finalCta: {
-    src: '/images/textures/gold-leaf-dark.jpg',
-    alt: '',
-  },
+  hairGallery: [
+    photo(blobs.hair1, 'Bridal hair being styled'),
+    photo(blobs.hair2, 'Finished wedding hairstyle'),
+    photo(blobs.hair3, 'Soft bridal updo detail'),
+  ],
+  makeupGallery: [
+    photo(blobs.makeup1, 'Bridal makeup in progress'),
+    photo(blobs.makeup2, 'Lasting wedding-day makeup'),
+    photo(blobs.makeup3, 'Makeup artist finishing a bridal look'),
+  ],
   pages: {
-    experience: {
-      src: '/images/calm-morning.jpg',
-      alt: 'Bride in a garden setting holding a bouquet',
-    },
-    about: {
-      src: '/images/explore-about.jpg',
-      alt: 'Bride surrounded by bridesmaids in a bright suite',
-    },
-    onsite: {
-      src: '/images/step-plan.jpg',
-      alt: 'Bride smiling while a makeup artist applies her look',
-    },
-    studio: {
-      src: '/images/step-book.jpg',
-      alt: 'Bride in a lace gown and veil holding a white and blue bouquet',
-    },
-    pricing: {
-      src: '/images/process-couple.jpg',
-      alt: 'Bride and groom under a veil',
-    },
-    gallery: {
-      src: '/images/gallery-hero.jpg',
-      alt: 'Bride and bridesmaids in blush dresses laughing outdoors',
-    },
-    faqs: {
-      src: '/images/explore-faq.jpg',
-      alt: 'Bride getting makeup applied on her wedding morning',
-    },
-    contact: {
-      src: '/images/step-enjoy.jpg',
-      alt: 'Bride and groom smiling under a veil',
-    },
-    checkYourDate: {
-      src: '/images/hero-bride.jpg',
-      alt: 'Bride in white lace gown standing before an ornate gold mirror',
-    },
-    weddingPlanners: {
-      src: '/images/gallery-2.jpg',
-      alt: 'Bride and groom under a flowing veil',
-    },
-    careers: {
-      src: '/images/explore-gallery.jpg',
-      alt: 'Bride and bridesmaids posing outdoors with bouquets',
-    },
+    experience: photo(blobs.pageExperience, 'Bride getting ready on her wedding morning'),
+    about: photo(blobs.pageAbout, 'Effortless Beauty studio in Knoxville'),
+    onsite: photo(blobs.pageOnsite, 'On-site wedding morning hair and makeup'),
+    studio: photo(blobs.pageStudio, 'The Effortless Beauty studio in Old North Knoxville'),
+    pricing: photo(blobs.pagePricing, 'Bride and groom after hair and makeup'),
+    gallery: photo(blobs.homeGalleryHero, 'Wedding hair and makeup gallery'),
+    faqs: photo(blobs.pageFaqs, 'Professional bridal makeup kit'),
+    contact: photo(blobs.pageContact, 'Stylist working in the Knoxville studio'),
+    weddingPlanners: photo(blobs.pageWeddingPlanners, 'Bridal party ready for the ceremony'),
+    careers: photo(blobs.pageCareers, 'Makeup brushes and tools of the trade'),
+    hair: photo(blobs.pageHair, 'Low bridal updo with veil and pearl pins'),
+    makeup: photo(blobs.pageMakeup, 'Bridal makeup being applied'),
+  },
+  paths: {
+    onsite: photo(blobs.pathOnsite, 'Bride getting ready on-site'),
+    studio: photo(blobs.pathStudio, 'Getting ready in the Knoxville studio'),
   },
 } as const;

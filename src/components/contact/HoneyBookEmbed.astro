@@ -1,0 +1,73 @@
+---
+import { siteConfig } from '@/config/site';
+
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  placement?: number;
+}
+
+const {
+  id = 'check-date-form',
+  eyebrow = 'Request availability',
+  title = 'Tell us about your day',
+  description = 'Fill out the form below and we will reach out as soon as we can.',
+  placement = siteConfig.booking.honeybookPlacements.inquiry,
+} = Astro.props;
+
+const pid = siteConfig.booking.honeybookPid;
+const placementClass = `hb-p-${pid}-${placement}`;
+---
+
+<section
+  id={id}
+  class="border-b border-default bg-[var(--color-surface-elevated)] py-16 sm:py-20 lg:py-24"
+>
+  <div class="container-site">
+    <div class="mx-auto max-w-xl text-center">
+      <p class="font-heading text-[0.68rem] font-semibold tracking-[0.24em] text-[var(--color-brand-500)] uppercase">
+        {eyebrow}
+      </p>
+      <h2 class="mt-4 text-3xl leading-tight tracking-[-0.01em] sm:text-4xl">{title}</h2>
+      <p class="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted sm:text-lg">
+        {description}
+        {' '}
+        <a href="/sms-terms-privacy-policy" class="underline decoration-[var(--color-brand-300)] underline-offset-4 hover:text-[var(--color-brand-900)]">
+          View our terms
+        </a>.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-2xl">
+      <div class:list={[placementClass, 'honeybook-frame']}></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .honeybook-frame {
+    min-height: 46rem;
+  }
+
+  .honeybook-frame :global(iframe) {
+    display: block;
+    min-height: 46rem;
+    width: 100%;
+  }
+</style>
+
+<script is:inline define:vars={{ pid }}>
+  window._HB_ = window._HB_ || {};
+  window._HB_.pid = pid;
+
+  if (!document.querySelector('script[data-honeybook-widget]')) {
+    const script = document.createElement('script');
+    script.src =
+      'https://widget.honeybook.com/assets_users_production/websiteplacements/placement-controller.min.js';
+    script.async = true;
+    script.dataset.honeybookWidget = 'true';
+    document.body.appendChild(script);
+  }
+</script>

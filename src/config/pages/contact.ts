@@ -2,13 +2,13 @@ import { siteConfig } from '@/config/site';
 
 export const contactContent = {
   hero: {
-    eyebrow: 'Check your date',
-    title: 'See if your wedding date is',
-    titleAccent: 'still open.',
+    eyebrow: 'Contact',
+    title: 'Questions, details, or a',
+    titleAccent: 'quick hello.',
     description:
-      'Our teams book up fast. Share a few details and we will confirm availability and next steps — usually within 24 hours.',
+      'On-site wedding mornings start with the inquiry form below. Coming into the studio? Book that appointment on the in-studio page.',
     primaryCta: { label: 'Start the form', href: '#check-date-form' },
-    secondaryCta: { label: 'Call us', href: siteConfig.contact.phoneHref },
+    secondaryCta: { label: 'Book in-studio', href: siteConfig.booking.mangomint.url },
   },
   steps: {
     title: 'What happens next',
@@ -33,7 +33,7 @@ export const contactContent = {
   form: {
     eyebrow: 'Request availability',
     title: 'Tell us about your day',
-    description: 'A few quick steps — we will follow up within 24 hours.',
+    description: 'Fill out the form below and we will follow up within 24 hours.',
     steps: [
       {
         title: 'About you',
@@ -209,7 +209,7 @@ export const contactContent = {
 } as const;
 
 export const contactSeo = {
-  title: 'Check Your Date',
+  title: 'Contact',
   description:
-    'Check wedding date availability for hair and makeup with Effortless Beauty in Knoxville, TN.',
+    'Contact Effortless Beauty in Knoxville, TN — on-site wedding inquiries, studio questions, and next steps.',
 } as const;

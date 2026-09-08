@@ -30,7 +30,7 @@ const { hero } = homeContent;
             </Button>
           </div>
 
-          <div class="hero-reviews mt-12 sm:mt-14">
+          <a href="/reviews" class="hero-reviews mt-12 sm:mt-14">
             <img
               src={media.reviews.marks}
               alt={media.reviews.alt}
@@ -41,7 +41,7 @@ const { hero } = homeContent;
               decoding="async"
             />
             <p class="hero-reviews__label">{hero.rating.label}</p>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -49,7 +49,7 @@ const { hero } = homeContent;
         <SiteImage
           src={media.hero.src}
           alt={media.hero.alt}
-          class="absolute inset-0 h-full w-full object-cover object-[54%_15%]"
+          class="absolute inset-0 h-full w-full object-cover object-[center_18%]"
           loading="eager"
           fetchpriority="high"
         />
@@ -67,6 +67,15 @@ const { hero } = homeContent;
     border-radius: 9999px;
     border: 1px solid var(--color-border);
     background: var(--color-cream);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hero-reviews:hover,
+  .hero-reviews:focus-visible {
+    border-color: var(--color-gold-500);
+    box-shadow: 0 8px 20px -16px rgb(35 31 32 / 0.45);
   }
 
   .hero-reviews__label {

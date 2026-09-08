@@ -1,0 +1,19 @@
+---
+interface Props {
+  widgetId: string;
+}
+
+const { widgetId } = Astro.props;
+---
+
+<div class="senja-frame">
+  <div class="senja-embed" data-id={widgetId} data-mode="shadow" data-lazyload="true"></div>
+</div>
+
+<script is:inline async src="https://static.senja.io/dist/platform.js"></script>
+
+<style>
+  .senja-frame {
+    min-height: 32rem;
+  }
+</style>

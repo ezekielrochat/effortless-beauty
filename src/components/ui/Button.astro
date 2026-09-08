@@ -35,6 +35,8 @@ const sizes: Record<Size, string> = {
 
 const classes = [variants[variant], sizes[size], className].join(' ');
 const Tag = href ? 'a' : 'button';
+const isMangomint = Boolean(href?.includes('booking.mangomint.com'));
+const isExternal = Boolean(href && /^https?:\/\//.test(href) && !isMangomint);
 ---
 
 <Tag
@@ -43,6 +45,8 @@ const Tag = href ? 'a' : 'button';
   type={href ? undefined : type}
   disabled={href ? undefined : disabled}
   aria-disabled={disabled || undefined}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
 >
   <slot />
 </Tag>

@@ -4,6 +4,8 @@ import PageHero from '@/components/shared/PageHero.astro';
 import EditorialBand from '@/components/shared/EditorialBand.astro';
 import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
+import QuoteBlock from '@/components/shared/QuoteBlock.astro';
+import HoneyBookEmbed from '@/components/contact/HoneyBookEmbed.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
 import Button from '@/components/ui/Button.astro';
 import { media } from '@/config/media';
@@ -15,6 +17,8 @@ import { onsiteContent, onsiteSeo } from '@/config/pages/onsite';
 
   <EditorialBand image={media.pages.onsite} />
 
+  <QuoteBlock {...onsiteContent.quote} />
+
   <ContentBlock
     eyebrow="On wedding morning"
     title={onsiteContent.overview.title}
@@ -24,15 +28,23 @@ import { onsiteContent, onsiteSeo } from '@/config/pages/onsite';
   </ContentBlock>
 
   <ContentBlock
-    eyebrow="Best for"
+    eyebrow="The timeline"
+    title={onsiteContent.morning.title}
+    description={onsiteContent.morning.description}
+    class="bg-surface-muted"
+  >
+    <InfoList items={onsiteContent.morning.items} columns={2} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow={onsiteContent.note.eyebrow}
     title={onsiteContent.note.title}
     description={onsiteContent.note.description}
     width="narrow"
-    class="bg-surface-muted"
   >
     <div class="flex flex-wrap justify-center gap-3">
-      <Button href="/contact" variant="dark" class="uppercase">
-        Check your date
+      <Button href={onsiteContent.hero.primaryCta.href} variant="dark" class="uppercase">
+        {onsiteContent.hero.primaryCta.label}
       </Button>
       <Button href="/in-studio" variant="outline" class="uppercase">
         Prefer in-studio?
@@ -40,5 +52,17 @@ import { onsiteContent, onsiteSeo } from '@/config/pages/onsite';
     </div>
   </ContentBlock>
 
-  <SimpleCta title="Check if your date is open" />
+  <HoneyBookEmbed
+    eyebrow={onsiteContent.form.eyebrow}
+    title={onsiteContent.form.title}
+    description={onsiteContent.form.description}
+  />
+
+  <SimpleCta
+    title="Coming to the studio instead?"
+    primaryLabel="Book in-studio"
+    primaryHref="/in-studio"
+    secondaryLabel="See pricing"
+    secondaryHref="/pricing"
+  />
 </SiteLayout>

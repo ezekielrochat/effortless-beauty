@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
@@ -9,8 +10,12 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'static',
   adapter: vercel(),
+  integrations: [sitemap()],
   redirects: {
-    '/check-your-date': '/contact',
+    '/work': '/gallery',
+    '/work/updos': '/gallery',
+    '/work/downstyles': '/gallery',
+    '/work/makeup': '/gallery',
   },
   vite: {
     plugins: [tailwindcss()],

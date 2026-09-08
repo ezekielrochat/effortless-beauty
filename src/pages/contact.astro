@@ -1,17 +1,24 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
-import CheckDateForm from '@/components/contact/CheckDateForm.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
+import HoneyBookEmbed from '@/components/contact/HoneyBookEmbed.astro';
 import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
+import { media } from '@/config/media';
 import { contactContent, contactSeo } from '@/config/pages/contact';
 ---
 
 <SiteLayout title={contactSeo.title} description={contactSeo.description} canonicalPath="/contact">
   <PageHero {...contactContent.hero} />
+  <EditorialBand image={media.pages.contact} />
 
-  <CheckDateForm />
+  <HoneyBookEmbed
+    eyebrow={contactContent.form.eyebrow}
+    title={contactContent.form.title}
+    description="Fill out the form below and we will be sure to reach out as soon as we can."
+  />
 
   <ContentBlock
     eyebrow="Next steps"

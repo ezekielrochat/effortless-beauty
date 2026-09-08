@@ -1,22 +1,47 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
 import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
 import Button from '@/components/ui/Button.astro';
+import { media } from '@/config/media';
 import { pricingContent, pricingSeo } from '@/config/pages/pricing';
 ---
 
 <SiteLayout title={pricingSeo.title} description={pricingSeo.description} canonicalPath="/pricing">
   <PageHero {...pricingContent.hero} />
+  <EditorialBand image={media.pages.pricing} />
+
+  <ContentBlock
+    eyebrow="Starting at"
+    title={pricingContent.starting.title}
+    description={pricingContent.starting.description}
+  >
+    <InfoList items={pricingContent.starting.items} columns={3} />
+  </ContentBlock>
 
   <ContentBlock
     eyebrow="Packages"
     title={pricingContent.packages.title}
     description={pricingContent.packages.description}
+    class="bg-surface-muted"
   >
     <InfoList items={pricingContent.packages.items} columns={3} />
+  </ContentBlock>
+
+  <ContentBlock eyebrow="Details" title={pricingContent.services.title}>
+    <InfoList items={pricingContent.services.items} />
+  </ContentBlock>
+
+  <ContentBlock
+    eyebrow="Hair"
+    title={pricingContent.hair.title}
+    width="narrow"
+    class="bg-surface-muted"
+  >
+    <InfoList items={pricingContent.hair.items} />
   </ContentBlock>
 
   <ContentBlock
@@ -24,10 +49,9 @@ import { pricingContent, pricingSeo } from '@/config/pages/pricing';
     title={pricingContent.note.title}
     description={pricingContent.note.description}
     width="narrow"
-    class="bg-surface-muted"
   >
     <div class="flex flex-wrap justify-center gap-3">
-      <Button href="/contact" variant="dark" class="uppercase">
+      <Button href="/check-your-date" variant="dark" class="uppercase">
         Request a quote
       </Button>
       <Button href="/faqs" variant="outline" class="uppercase">

@@ -31,14 +31,18 @@ export const primaryNav: NavLink[] = [
 ];
 
 export const moreNav: NavLink[] = [
+  { label: 'Hair', href: '/wedding-hair' },
+  { label: 'Makeup', href: '/wedding-makeup' },
   { label: 'Gallery', href: '/gallery' },
+  { label: 'Reviews', href: '/reviews' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
 ];
 
 export const ctaNav = {
-  label: 'Check your date',
-  href: '/contact',
+  label: 'Select your experience',
+  href: '/check-your-date',
 } as const;
 
 export const footerColumns: FooterColumn[] = [
@@ -48,15 +52,19 @@ export const footerColumns: FooterColumn[] = [
       { label: 'An Effortless Experience', href: '/experience' },
       { label: 'On-site', href: '/on-site' },
       { label: 'In-studio', href: '/in-studio' },
+      { label: 'Hair', href: '/wedding-hair' },
+      { label: 'Makeup', href: '/wedding-makeup' },
       { label: 'Gallery', href: '/gallery' },
-      { label: 'FAQs', href: '/faqs' },
-      { label: 'About', href: '/about' },
+      { label: 'Reviews', href: '/reviews' },
       { label: 'Pricing', href: '/pricing' },
     ],
   },
   {
     title: 'Company',
     links: [
+      { label: 'About', href: '/about' },
+      { label: 'FAQs', href: '/faqs' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Wedding Planners', href: '/wedding-planners' },
       { label: 'Careers', href: '/careers' },
       { label: 'Contact', href: '/contact' },
@@ -65,8 +73,9 @@ export const footerColumns: FooterColumn[] = [
 ];
 
 export const footerNav: NavLink[] = [
-  { label: 'Privacy Policy', href: '#' },
-  { label: 'Terms of Service', href: '#' },
+  { label: 'Privacy Policy', href: '/sms-terms-privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: 'Site Credits', href: '/site-credits' },
   { label: 'Contact Us', href: '/contact' },
 ];
 

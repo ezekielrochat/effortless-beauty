@@ -15,8 +15,8 @@ export const siteConfig = {
   locale: 'en-US',
 
   contact: {
-    email: 'hello@theeffortlessbeautyco.com',
-    emailHref: 'mailto:hello@theeffortlessbeautyco.com',
+    email: 'hi@theeffortlessbeautyco.com',
+    emailHref: 'mailto:hi@theeffortlessbeautyco.com',
     phone: '(865) 505-7713',
     phoneHref: 'tel:+18655057713',
     address: {
@@ -28,8 +28,31 @@ export const siteConfig = {
     },
   },
 
+  booking: {
+    honeybookPid: '5f3368999b7da1000d307f49',
+    honeybookPlacements: {
+      inquiry: 1,
+      planners: 2,
+    },
+    mangomint: {
+      url: 'https://booking.mangomint.com/effortlessspa',
+      scriptSrc: 'https://booking.mangomint.com/app.js',
+    },
+  },
+
+  reviews: {
+    googleUrl:
+      'https://www.google.com/maps/search/?api=1&query=Effortless%20Beauty%201304%20Atlantic%20Ave%20Knoxville%20TN',
+    knotUrl: 'https://www.theknot.com/marketplace/effortlessbeauty-knoxville-tn-2035899',
+    weddingWireUrl: 'https://www.weddingwire.com/biz/effortlessbeauty/4013559b451135fa.html',
+    /** Paste a Senja Wall of Love widget ID to replace the first-party grid. */
+    senjaWidgetId: '',
+  },
+
   social: {
     instagram: 'https://www.instagram.com/effortlessbeautyco/',
+    facebook: 'https://www.facebook.com/theeffortlessbeauty',
+    youtube: 'https://www.youtube.com/c/EffortlessBeauty',
     handle: '@EFFORTLESSBEAUTYCO',
   },
 
@@ -62,7 +85,6 @@ export function absoluteUrl(path: string): string {
   const base = siteConfig.url.replace(/\/$/, '');
   let normalized = path.startsWith('/') ? path : `/${path}`;
 
-  // Match site trailingSlash: 'never' for page paths (keep root and assets).
   if (
     normalized !== '/' &&
     !normalized.includes('.') &&
@@ -92,5 +114,10 @@ export function organizationSchema() {
       postalCode: siteConfig.contact.address.zip,
       addressCountry: 'US',
     },
+    sameAs: [
+      siteConfig.social.instagram,
+      siteConfig.social.facebook,
+      siteConfig.social.youtube,
+    ],
   };
 }

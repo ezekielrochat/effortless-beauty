@@ -1,0 +1,51 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import EditorialBand from '@/components/shared/EditorialBand.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import InfoList from '@/components/shared/InfoList.astro';
+import QuoteBlock from '@/components/shared/QuoteBlock.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import SiteImage from '@/components/ui/SiteImage.astro';
+import { media } from '@/config/media';
+import { hairContent, hairSeo } from '@/config/pages/hair';
+---
+
+<SiteLayout title={hairSeo.title} description={hairSeo.description} canonicalPath="/wedding-hair">
+  <PageHero {...hairContent.hero} />
+  <EditorialBand image={media.pages.hair} />
+  <QuoteBlock {...hairContent.quote} />
+
+  <ContentBlock eyebrow="How we work" title={hairContent.process.title}>
+    <InfoList items={hairContent.process.items} columns={3} />
+  </ContentBlock>
+
+  <section class="py-6 sm:py-8">
+    <div class="frame-bleed">
+      <div class="grid grid-cols-3 gap-2 sm:gap-2.5">
+        {
+          media.hairGallery.map((image) => (
+            <figure class="frame-media">
+              <SiteImage src={image.src} alt={image.alt} class="aspect-[3/4] w-full object-cover" />
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <ContentBlock
+    eyebrow="Pricing"
+    title={hairContent.pricing.title}
+    width="narrow"
+    class="bg-surface-muted"
+  >
+    <InfoList items={hairContent.pricing.items} />
+  </ContentBlock>
+
+  <SimpleCta
+    title="Want to talk about your hair?"
+    secondaryLabel="View gallery"
+    secondaryHref="/gallery"
+  />
+</SiteLayout>

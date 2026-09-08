@@ -1,0 +1,52 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import SimpleCta from '@/components/shared/SimpleCta.astro';
+import ReviewsWall from '@/components/reviews/ReviewsWall.astro';
+import SenjaEmbed from '@/components/reviews/SenjaEmbed.astro';
+import { reviewsContent, reviewsSeo } from '@/config/pages/reviews';
+import { siteConfig } from '@/config/site';
+
+const senjaWidgetId = siteConfig.reviews.senjaWidgetId;
+---
+
+<SiteLayout title={reviewsSeo.title} description={reviewsSeo.description} canonicalPath="/reviews">
+  <PageHero {...reviewsContent.hero} />
+
+  {
+    senjaWidgetId ? (
+      <section class="py-10 sm:py-12 lg:py-14" aria-label="Client reviews">
+        <div class="container-site">
+          <SenjaEmbed widgetId={senjaWidgetId} />
+        </div>
+      </section>
+    ) : (
+      <ReviewsWall />
+    )
+  }
+
+  <nav class="pb-4 sm:pb-6" aria-label="Review platforms">
+    <div class="container-site flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
+      {
+        reviewsContent.sources.map((source) => (
+          <a
+            href={source.href}
+            class="text-subtle underline-offset-4 transition-colors hover:text-[var(--color-brand-900)] hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {source.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+
+  <SimpleCta
+    title="Ready to feel that way too?"
+    primaryLabel="Check your date"
+    primaryHref="/check-your-date"
+    secondaryLabel="See the gallery"
+    secondaryHref="/gallery"
+  />
+</SiteLayout>

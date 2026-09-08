@@ -7,7 +7,7 @@ export const faqsContent = {
     titleAccent: 'most often.',
     description:
       'A few quick answers to help you plan. Still unsure? Reach out — we are happy to help.',
-    primaryCta: { label: 'Check your date', href: '/contact' },
+    primaryCta: { label: 'Check your date', href: '/check-your-date' },
     secondaryCta: { label: 'Call us', href: siteConfig.contact.phoneHref },
   },
   items: [
@@ -17,14 +17,34 @@ export const faqsContent = {
         'As soon as your date is set. Popular weekends fill quickly, and locking in early gives you the most flexibility for trials and timing.',
     },
     {
-      question: 'Do you travel on-site?',
+      question: 'What is the billing policy?',
       answer:
-        'Yes. We offer on-site wedding morning services across Knoxville, East Tennessee, and the Smoky Mountains, plus in-studio appointments at our Knoxville location.',
+        '50% is due at booking and the final payment is due 2 weeks prior to the wedding.',
     },
     {
-      question: 'Do I need a trial?',
+      question: 'What is your travel policy?',
       answer:
-        'We recommend it for most brides. A trial lets us refine your look ahead of time so wedding morning feels calm and familiar.',
+        'We travel on-site across Knoxville, East Tennessee, and the Smoky Mountains — and farther for the right wedding. Share your location and we will include travel in your quote.',
+    },
+    {
+      question: 'What is the expected tip / gratuity?',
+      answer:
+        'We want your day to feel care-free. A 20% gratuity is added to the final invoice.',
+    },
+    {
+      question: 'Is there an extra fee for false lashes?',
+      answer:
+        'No. We are not fans of extra fees — false lashes are included in makeup applications.',
+    },
+    {
+      question: 'Is the trial included in the bridal package?',
+      answer:
+        'The trial is always billed separately. We recommend it for most brides so wedding morning feels calm and familiar.',
+    },
+    {
+      question: 'Do you travel on-site?',
+      answer:
+        'Yes. We offer on-site wedding morning services plus in-studio appointments at our Knoxville location.',
     },
     {
       question: 'How quickly will I hear back?',
@@ -47,5 +67,5 @@ export const faqsContent = {
 export const faqsSeo = {
   title: 'FAQs',
   description:
-    'Frequently asked questions about wedding hair and makeup with Effortless Beauty in Knoxville, TN.',
+    'Frequently asked questions about wedding hair and makeup with Effortless Beauty in Knoxville, TN — billing, travel, trials, and more.',
 } as const;

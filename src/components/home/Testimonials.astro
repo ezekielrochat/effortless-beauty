@@ -1,5 +1,6 @@
 ---
 import { homeContent } from '@/config/home';
+import Button from '@/components/ui/Button.astro';
 import { Star } from '@lucide/astro';
 
 const { testimonials } = homeContent;
@@ -33,7 +34,10 @@ function initials(name: string) {
                 >
                   {initials(item.name)}
                 </div>
-                <p class="text-sm font-semibold text-[var(--color-brand-900)]">{item.name}</p>
+                <div>
+                  <p class="text-sm font-semibold text-[var(--color-brand-900)]">{item.name}</p>
+                  {item.role && <p class="text-xs text-subtle">{item.role}</p>}
+                </div>
               </div>
               <div class="mt-3 flex gap-0.5 text-[var(--color-accent-strong)]" aria-label="5 out of 5 stars">
                 {Array.from({ length: 5 }).map(() => (
@@ -57,7 +61,10 @@ function initials(name: string) {
                 >
                   {initials(item.name)}
                 </div>
-                <p class="text-sm font-semibold text-[var(--color-brand-900)]">{item.name}</p>
+                <div>
+                  <p class="text-sm font-semibold text-[var(--color-brand-900)]">{item.name}</p>
+                  {item.role && <p class="text-xs text-subtle">{item.role}</p>}
+                </div>
               </div>
               <div class="mt-3 flex gap-0.5 text-[var(--color-accent-strong)]" aria-label="5 out of 5 stars">
                 {Array.from({ length: 5 }).map(() => (
@@ -69,6 +76,12 @@ function initials(name: string) {
           ))}
         </div>
       </div>
+    </div>
+
+    <div class="container-site mt-10 flex justify-center sm:mt-12">
+      <Button href={testimonials.cta.href} variant="outline" class="uppercase">
+        {testimonials.cta.label}
+      </Button>
     </div>
   </div>
 </section>

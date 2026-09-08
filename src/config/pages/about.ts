@@ -5,7 +5,7 @@ export const aboutContent = {
     titleAccent: 'you.',
     description:
       'We are a Knoxville wedding hair and makeup team built around calm mornings, lasting looks, and care for your whole party.',
-    primaryCta: { label: 'Check your date', href: '/contact' },
+    primaryCta: { label: 'Check your date', href: '/check-your-date' },
     secondaryCta: { label: 'View gallery', href: '/gallery' },
   },
   story: {
@@ -13,6 +13,16 @@ export const aboutContent = {
     paragraphs: [
       'Effortless Beauty is a bridal beauty studio serving Knoxville, East Tennessee, and the Smoky Mountains. We specialize in wedding hair and makeup that holds up from first look to last dance.',
       'Our approach is simple: listen first, enhance your natural beauty, and take the stress out of the morning so you can actually enjoy it.',
+    ],
+  },
+  owner: {
+    eyebrow: 'Meet the owner',
+    name: 'Grace Rochat',
+    role: 'Owner & stylist',
+    paragraphs: [
+      'After years in the salon, Grace and her business partner Josie took a leap into event styling. In December 2019, Effortless Beauty was born.',
+      'Grace is an owner and stylist here. She built the company around rooted confidence, a fun-loving attitude, and doing each wedding well — so Knoxville brides can look like themselves and actually enjoy the morning.',
+      'The aim has stayed the same: nurture beauty. A kind word, a stroke of a brush, and a look that lasts from first look to last dance.',
     ],
   },
   values: {
@@ -40,5 +50,5 @@ export const aboutContent = {
 export const aboutSeo = {
   title: 'About',
   description:
-    'Meet Effortless Beauty — a Knoxville wedding hair and makeup team focused on calm mornings and lasting bridal looks.',
+    'Meet Grace Rochat and Effortless Beauty — a Knoxville wedding hair and makeup team focused on calm mornings and lasting bridal looks.',
 } as const;

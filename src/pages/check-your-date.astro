@@ -1,0 +1,45 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import PathsSection from '@/components/shared/PathsSection.astro';
+import ContentBlock from '@/components/shared/ContentBlock.astro';
+import Button from '@/components/ui/Button.astro';
+import { media } from '@/config/media';
+import { checkYourDateContent, checkYourDateSeo } from '@/config/pages/check-your-date';
+
+const pathItems = checkYourDateContent.paths.items.map((item) => ({
+  ...item,
+  image: media.paths[item.imageKey],
+}));
+---
+
+<SiteLayout
+  title={checkYourDateSeo.title}
+  description={checkYourDateSeo.description}
+  canonicalPath="/check-your-date"
+>
+  <PathsSection
+    eyebrow={checkYourDateContent.paths.eyebrow}
+    title={checkYourDateContent.paths.title}
+    titleAccent={checkYourDateContent.paths.titleAccent}
+    description={checkYourDateContent.paths.description}
+    headingLevel="h1"
+    items={pathItems}
+    class="pt-20 sm:pt-24 lg:pt-28"
+  />
+
+  <ContentBlock
+    eyebrow="Need a hand"
+    title={checkYourDateContent.note.title}
+    description={checkYourDateContent.note.description}
+    width="narrow"
+  >
+    <div class="flex flex-wrap justify-center gap-3">
+      <Button href="/on-site" variant="dark" class="uppercase">
+        On-site mornings
+      </Button>
+      <Button href="/in-studio" variant="outline" class="uppercase">
+        In-studio visits
+      </Button>
+    </div>
+  </ContentBlock>
+</SiteLayout>

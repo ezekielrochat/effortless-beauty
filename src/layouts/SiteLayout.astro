@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import MangomintDrawer from '@/components/booking/MangomintDrawer.astro';
 
 interface Props {
   title?: string;
@@ -19,5 +20,6 @@ const { title, description, canonicalPath } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <MangomintDrawer />
   </div>
 </BaseLayout>

@@ -5,6 +5,7 @@ import EditorialBand from '@/components/shared/EditorialBand.astro';
 import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
+import SiteImage from '@/components/ui/SiteImage.astro';
 import { media } from '@/config/media';
 import { aboutContent, aboutSeo } from '@/config/pages/about';
 ---
@@ -13,6 +14,38 @@ import { aboutContent, aboutSeo } from '@/config/pages/about';
   <PageHero {...aboutContent.hero} />
 
   <EditorialBand image={media.pages.about} />
+
+  <section class="bg-[var(--color-surface-elevated)] py-16 sm:py-20 lg:py-24">
+    <div class="container-site">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <figure class="frame-media overflow-hidden">
+          <SiteImage
+            src={media.grace.src}
+            alt={media.grace.alt}
+            class="aspect-[4/5] w-full object-cover object-[center_20%]"
+          />
+        </figure>
+        <div>
+          <p class="font-heading text-[0.68rem] font-semibold tracking-[0.24em] text-[var(--color-brand-500)] uppercase">
+            {aboutContent.owner.eyebrow}
+          </p>
+          <h2 class="mt-4 text-3xl leading-tight tracking-[-0.01em] sm:text-4xl lg:text-[2.75rem]">
+            {aboutContent.owner.name}
+          </h2>
+          <p class="mt-2 text-sm tracking-[0.12em] text-muted uppercase">
+            {aboutContent.owner.role}
+          </p>
+          <div class="mt-6 space-y-4">
+            {
+              aboutContent.owner.paragraphs.map((paragraph) => (
+                <p class="text-base leading-relaxed text-muted sm:text-lg">{paragraph}</p>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <ContentBlock
     eyebrow="Our story"
