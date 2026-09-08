@@ -87,4 +87,15 @@ export const media = {
     onsite: photo(blobs.pathOnsite, 'Bride getting ready on-site'),
     studio: photo(blobs.pathStudio, 'Getting ready in the Knoxville studio'),
   },
+  collective: {
+    beauty: photo(blobs.exploreAbout, 'Bride surrounded by bridesmaids after hair and makeup'),
+    spa: photo(
+      'https://i9o6eutbvuorc7av.public.blob.vercel-storage.com/effortless-head-spa/pageExperience.jpg',
+      'Guest receiving a restorative head spa treatment',
+    ),
+    glow: photo(
+      'https://i9o6eutbvuorc7av.public.blob.vercel-storage.com/effortless-glow/homeGalleryHero.jpg',
+      'Custom spray tan glow at Effortless',
+    ),
+  },
 } as const;

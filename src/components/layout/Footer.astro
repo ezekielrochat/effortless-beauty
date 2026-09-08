@@ -1,11 +1,12 @@
 ---
-import { brandNav, footerColumns, footerNav, footerLegal, ctaNav } from '@/config/navigation';
+import { brandNav, footerColumns, footerNav, footerLegal, ctaNav, isBrandCurrent } from '@/config/navigation';
 import Logo from '@/components/ui/Logo.astro';
 import Button from '@/components/ui/Button.astro';
 import { siteConfig } from '@/config/site';
 import { MapPin, Phone, Mail } from '@lucide/astro';
 
 const year = new Date().getFullYear();
+const pathname = Astro.url.pathname;
 const linkClass =
   'text-sm text-muted transition-colors hover:text-[var(--color-brand-900)]';
 const headingClass =
@@ -129,25 +130,28 @@ const headingClass =
         <p class={headingClass}>The Effortless Collective</p>
         <nav class="flex flex-wrap items-center gap-x-1 gap-y-2" aria-label="Sister brands">
           {
-            brandNav.map((item, index) => (
-              <span class="inline-flex items-center">
-                {index > 0 && (
-                  <span class="mx-2.5 text-[var(--color-brand-300)]" aria-hidden="true">
-                    |
-                  </span>
-                )}
-                <a
-                  href={item.href}
-                  class:list={[
-                    'text-sm transition-colors hover:text-[var(--color-brand-900)]',
-                    item.current ? 'text-[var(--color-brand-900)]' : 'text-muted',
-                  ]}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.label}
-                </a>
-              </span>
-            ))
+            brandNav.map((item, index) => {
+              const current = isBrandCurrent(item, pathname);
+              return (
+                <span class="inline-flex items-center">
+                  {index > 0 && (
+                    <span class="mx-2.5 text-[var(--color-brand-300)]" aria-hidden="true">
+                      |
+                    </span>
+                  )}
+                  <a
+                    href={item.href}
+                    class:list={[
+                      'text-sm transition-colors hover:text-[var(--color-brand-900)]',
+                      current ? 'text-[var(--color-brand-900)]' : 'text-muted',
+                    ]}
+                    aria-current={current ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </span>
+              );
+            })
           }
         </nav>
       </div>

@@ -1,0 +1,419 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { brandNav, isBrandCurrent } from '@/config/navigation';
+import { collectiveContent, collectiveSeo } from '@/config/pages/collective';
+import { media } from '@/config/media';
+
+const pathname = Astro.url.pathname;
+---
+
+<BaseLayout
+  title={collectiveSeo.title}
+  description={collectiveSeo.description}
+  canonicalPath="/collective"
+>
+  <div class="splash">
+    <header class="splash-bar">
+      <nav class="splash-brands" aria-label="Sister brands">
+        {
+          brandNav.map((item, index) => (
+            <span class="inline-flex items-center">
+              {index > 0 && <span class="splash-brands__rule" aria-hidden="true">|</span>}
+              <a
+                href={item.href}
+                class:list={[
+                  'splash-brands__link',
+                  isBrandCurrent(item, pathname) ? 'is-current' : undefined,
+                ]}
+                aria-current={isBrandCurrent(item, pathname) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </span>
+          ))
+        }
+      </nav>
+    </header>
+
+    <main class="splash-main">
+      <div class="splash-intro">
+        <img
+          src={media.logo.fancyWhite}
+          alt="Effortless"
+          class="splash-mark"
+          width="480"
+          height="83"
+        />
+        <h1 class="splash-title">
+          {collectiveContent.title}
+          <span class="text-accent"> {collectiveContent.titleAccent}</span>
+        </h1>
+        <p class="splash-lede">{collectiveContent.description}</p>
+      </div>
+
+      <section class="splash-grid" aria-label="Effortless companies">
+        {
+          collectiveContent.brands.map((brand, index) => (
+            <a href={brand.href} class="splash-card group">
+              <img
+                src={brand.image.src}
+                alt={brand.image.alt}
+                class={`splash-card__image splash-card__image--${brand.id}`}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : 'auto'}
+                decoding="async"
+              />
+              <div class="splash-card__overlay" aria-hidden="true" />
+              <div class="splash-card__content">
+                <span class="splash-card__rule" aria-hidden="true" />
+                <h2 class="splash-card__name">{brand.name}</h2>
+                <p class="splash-card__tagline">{brand.tagline}</p>
+                <span class="splash-card__cta">
+                  {brand.cta}
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path
+                      d="M3 8h10M9 4l4 4-4 4"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </section>
+    </main>
+
+    <p class="splash-address">{collectiveContent.address}</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .splash {
+    display: flex;
+    height: 100svh;
+    min-height: 100svh;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, color-mix(in oklab, var(--color-gold-600) 14%, transparent), transparent 58%),
+      var(--color-charcoal);
+    color: white;
+  }
+
+  .splash-bar {
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .splash-brands {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-on-dark-muted);
+  }
+
+  .splash-brands__rule {
+    margin-inline: 0.65rem;
+    color: rgb(255 255 255 / 0.28);
+  }
+
+  .splash-brands__link {
+    transition: color 0.2s ease;
+  }
+
+  .splash-brands__link:hover,
+  .splash-brands__link.is-current {
+    color: white;
+  }
+
+  .splash-main {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    padding: 1.5rem 0.75rem 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .splash-main {
+      padding: 1.75rem 1rem 1.15rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .splash-main {
+      padding: 1.85rem 1.25rem 1.15rem;
+    }
+  }
+
+  .splash-intro {
+    margin-inline: auto;
+    max-width: 42rem;
+    text-align: center;
+  }
+
+  .splash-mark {
+    display: block;
+    width: min(18rem, 72vw);
+    height: auto;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 640px) {
+    .splash-mark {
+      width: min(24rem, 50vw);
+    }
+  }
+
+  .splash-title {
+    margin-top: 0.85rem;
+    font-size: 1.65rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 640px) {
+    .splash-title {
+      font-size: 2.15rem;
+    }
+  }
+
+  .splash-lede {
+    margin: 0.65rem auto 0;
+    max-width: 30rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgb(255 255 255 / 0.72);
+  }
+
+  .splash-grid {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1.35rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .splash-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+  }
+
+  .splash-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    min-height: 22rem;
+    border-radius: 0.5rem;
+    isolation: isolate;
+    transform: translateZ(0);
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (min-width: 768px) {
+    .splash-card {
+      min-height: 32rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .splash-card {
+      border-radius: 0.625rem;
+    }
+  }
+
+  .splash-card:hover,
+  .splash-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 50px -28px rgb(0 0 0 / 0.75);
+  }
+
+  .splash-card:focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+  }
+
+  .splash-card__image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .splash-card__image--beauty {
+    object-position: center 22%;
+  }
+
+  .splash-card__image--spa {
+    object-position: center 18%;
+  }
+
+  .splash-card__image--glow {
+    object-position: center 35%;
+  }
+
+  .splash-card:hover .splash-card__image,
+  .splash-card:focus-visible .splash-card__image {
+    transform: scale(1.06);
+  }
+
+  .splash-card__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to top,
+        rgb(0 0 0 / 0.78) 0%,
+        rgb(0 0 0 / 0.28) 42%,
+        rgb(0 0 0 / 0.12) 100%
+      );
+    transition: background 0.55s ease;
+  }
+
+  .splash-card:hover .splash-card__overlay,
+  .splash-card:focus-visible .splash-card__overlay {
+    background:
+      linear-gradient(
+        to top,
+        rgb(0 0 0 / 0.86) 0%,
+        rgb(0 0 0 / 0.4) 48%,
+        rgb(0 0 0 / 0.18) 100%
+      );
+  }
+
+  .splash-card__content {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.75rem 1.35rem 1.5rem;
+    text-align: center;
+  }
+
+  .splash-card__rule {
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    margin-bottom: 0.85rem;
+    background: var(--color-gold-500);
+    transform: scaleX(0.35);
+    opacity: 0.55;
+    transform-origin: center;
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease;
+  }
+
+  .splash-card:hover .splash-card__rule,
+  .splash-card:focus-visible .splash-card__rule {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  .splash-card__name {
+    margin: 0;
+    font-size: 1.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .splash-card__tagline {
+    margin: 0.45rem 0 0;
+    max-width: 16rem;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: rgb(255 255 255 / 0.82);
+  }
+
+  .splash-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.85rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.88);
+    opacity: 0.85;
+    transform: translateY(6px);
+    transition:
+      opacity 0.45s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .splash-card__cta svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .splash-card:hover .splash-card__cta,
+  .splash-card:focus-visible .splash-card__cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .splash-card:hover .splash-card__cta svg,
+  .splash-card:focus-visible .splash-card__cta svg {
+    transform: translateX(3px);
+  }
+
+  .splash-address {
+    margin: 0;
+    padding: 0.75rem 1.25rem 1rem;
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.42);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash-card,
+    .splash-card__image,
+    .splash-card__overlay,
+    .splash-card__rule,
+    .splash-card__cta,
+    .splash-card__cta svg {
+      transition: none;
+    }
+
+    .splash-card:hover,
+    .splash-card:focus-visible {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .splash-card:hover .splash-card__image,
+    .splash-card:focus-visible .splash-card__image {
+      transform: none;
+    }
+
+    .splash-card__cta {
+      opacity: 1;
+      transform: none;
+    }
+
+    .splash-card__rule {
+      transform: scaleX(1);
+      opacity: 0.85;
+    }
+  }
+</style>

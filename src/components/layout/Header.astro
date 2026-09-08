@@ -5,6 +5,7 @@ import {
   moreNav,
   utilityNav,
   ctaNav,
+  isBrandCurrent,
   isNavCurrent,
 } from '@/config/navigation';
 import Logo from '@/components/ui/Logo.astro';
@@ -25,21 +26,24 @@ const mobileNavLinks = [...primaryNav, ...moreNav];
     <div class="container-site flex items-center justify-between gap-4 py-2 text-[0.65rem] tracking-[0.18em] uppercase sm:text-xs">
       <nav class="flex flex-wrap items-center" aria-label="Sister brands">
         {
-          brandNav.map((item, index) => (
-            <span class="inline-flex items-center">
-              {index > 0 && <span class="mx-2 text-white/35" aria-hidden="true">|</span>}
-              <a
-                href={item.href}
-                class:list={[
-                  'transition-colors hover:text-white',
-                  item.current ? 'text-white' : undefined,
-                ]}
-                aria-current={item.current ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            </span>
-          ))
+          brandNav.map((item, index) => {
+            const current = isBrandCurrent(item, pathname);
+            return (
+              <span class="inline-flex items-center">
+                {index > 0 && <span class="mx-2 text-white/35" aria-hidden="true">|</span>}
+                <a
+                  href={item.href}
+                  class:list={[
+                    'transition-colors hover:text-white',
+                    current ? 'text-white' : undefined,
+                  ]}
+                  aria-current={current ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              </span>
+            );
+          })
         }
       </nav>
 

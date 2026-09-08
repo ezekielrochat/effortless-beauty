@@ -9,12 +9,15 @@ export interface FooterColumn {
   links: NavLink[];
 }
 
+/** Shared house picker for the sister-brand switcher */
+export const collectivePath = '/collective';
+
 /** Sister-brand switcher in the top utility bar */
 export const brandNav: NavLink[] = [
-  { label: 'Effortless', href: '#' },
-  { label: 'Beauty', href: '/', current: true },
-  { label: 'Head Spa', href: 'https://effortless-head-spa.vercel.app' },
-  { label: 'Glow', href: 'https://effortless-glow.vercel.app' },
+  { label: 'Effortless', href: collectivePath },
+  { label: 'Beauty', href: '/' },
+  { label: 'Head Spa', href: collectivePath },
+  { label: 'Glow', href: collectivePath },
 ];
 
 export const utilityNav: NavLink[] = [
@@ -97,4 +100,12 @@ export function isNavCurrent(href: string, pathname: string): boolean {
   const path = normalizePath(href.split('#')[0] ?? href);
   const current = normalizePath(pathname);
   return path === current;
+}
+
+/** Which sister brand is active in the top bar. */
+export function isBrandCurrent(item: NavLink, pathname: string): boolean {
+  const onCollective = isNavCurrent(collectivePath, pathname);
+  if (item.label === 'Effortless') return onCollective;
+  if (item.label === 'Beauty') return !onCollective;
+  return false;
 }
