@@ -68,6 +68,12 @@ export const siteConfig = {
   features: {
     themeToggle: false,
   },
+
+  analytics: {
+    gtmId: 'GTM-WK2NRN3',
+    fathomSiteId: 'XCFLWQEG',
+    flodesk: true,
+  },
 } as const;
 
 export type SiteConfig = typeof siteConfig;
@@ -77,11 +83,14 @@ export const envFlags = {
 } as const;
 
 export function formatPageTitle(pageTitle?: string): string {
-  if (!pageTitle) return siteConfig.seo.defaultTitle;
+  if (!pageTitle || pageTitle === siteConfig.seo.defaultTitle) {
+    return siteConfig.seo.defaultTitle;
+  }
   return siteConfig.seo.titleTemplate.replace('%s', pageTitle);
 }
 
 export function absoluteUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) return path;
   const base = siteConfig.url.replace(/\/$/, '');
   let normalized = path.startsWith('/') ? path : `/${path}`;
 

@@ -16,8 +16,8 @@ export const collectivePath = '/collective';
 export const brandNav: NavLink[] = [
   { label: 'Effortless', href: collectivePath },
   { label: 'Beauty', href: '/' },
-  { label: 'Head Spa', href: collectivePath },
-  { label: 'Glow', href: collectivePath },
+  { label: 'Head Spa', href: 'https://www.effortlessspa.com' },
+  { label: 'Glow', href: 'https://www.effortlessglowtn.com' },
 ];
 
 export const utilityNav: NavLink[] = [
@@ -76,7 +76,7 @@ export const footerColumns: FooterColumn[] = [
 ];
 
 export const footerNav: NavLink[] = [
-  { label: 'Privacy Policy', href: '/sms-terms-privacy-policy' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Terms of Service', href: '/terms-of-service' },
   { label: 'Site Credits', href: '/site-credits' },
   { label: 'Contact Us', href: '/contact' },

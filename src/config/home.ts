@@ -137,6 +137,7 @@ export const homeContent = {
 } as const;
 
 export const pageSeo = {
+  title: 'Effortless Beauty | Wedding Hair & Makeup | Knoxville, TN',
   description:
     'Wedding hair and makeup that lasts. A completely stress-ready experience for a serene, elegant wedding morning in Knoxville, TN.',
 } as const;

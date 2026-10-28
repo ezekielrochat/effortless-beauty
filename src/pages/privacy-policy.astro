@@ -1,0 +1,18 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import LegalArticle from '@/components/shared/LegalArticle.astro';
+import { privacyPolicyContent } from '@/config/pages/legal';
+---
+
+<SiteLayout
+  title={privacyPolicyContent.seoTitle}
+  description={privacyPolicyContent.seoDescription}
+  canonicalPath="/privacy-policy"
+>
+  <LegalArticle
+    title={privacyPolicyContent.title}
+    updated={privacyPolicyContent.updated}
+    intro={privacyPolicyContent.intro}
+    sections={[...privacyPolicyContent.sections]}
+  />
+</SiteLayout>
