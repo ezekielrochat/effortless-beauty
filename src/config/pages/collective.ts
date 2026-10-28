@@ -28,7 +28,7 @@ export const collectiveContent = {
       id: 'glow',
       name: 'Glow',
       tagline: 'Custom spray tans that feel like skin.',
-      href: 'https://www.effortlessglow.com',
+      href: 'https://www.effortlessglowtn.com',
       cta: 'Visit Glow',
       image: media.collective.glow,
     },
