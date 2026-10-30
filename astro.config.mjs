@@ -10,7 +10,11 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'static',
   adapter: vercel(),
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/confirmation/'),
+    }),
+  ],
   redirects: {
     '/work': '/gallery',
     '/work/updos': '/gallery',
