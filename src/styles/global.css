@@ -195,6 +195,16 @@
     border-radius: 0.5rem;
   }
 
+  /* Show the whole photograph. Page bands were cropping portraits down to a thin strip. */
+  .frame-photo {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(82vh, 1040px);
+    margin-inline: auto;
+  }
+
   @media (min-width: 1024px) {
     .frame-media {
       border-radius: 0.625rem;

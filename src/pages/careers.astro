@@ -5,7 +5,7 @@ import ContentBlock from '@/components/shared/ContentBlock.astro';
 import InfoList from '@/components/shared/InfoList.astro';
 import EditorialBand from '@/components/shared/EditorialBand.astro';
 import SimpleCta from '@/components/shared/SimpleCta.astro';
-import Button from '@/components/ui/Button.astro';
+import ApplicationForm from '@/components/careers/ApplicationForm.astro';
 import { media } from '@/config/media';
 import { careersContent, careersSeo } from '@/config/pages/careers';
 ---
@@ -27,22 +27,26 @@ import { careersContent, careersSeo } from '@/config/pages/careers';
     <InfoList items={careersContent.openRoles.items} columns={2} />
   </ContentBlock>
 
-  <ContentBlock
-    eyebrow="Apply"
-    title={careersContent.apply.title}
-    description={careersContent.apply.description}
-    width="narrow"
-  >
-    <div class="flex justify-center">
-      <Button href={careersContent.apply.ctaHref} variant="dark" class="uppercase">
-        Email your interest
-      </Button>
+  <section id="apply" class="scroll-mt-24 py-16 sm:py-20 lg:py-24">
+    <div class="container-site">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="font-heading text-[0.68rem] font-semibold tracking-[0.24em] text-[var(--color-brand-500)] uppercase">
+          Join us
+        </p>
+        <h2 class="mt-4 text-3xl leading-tight tracking-[-0.01em] sm:text-4xl lg:text-[2.75rem]">
+          {careersContent.apply.title}
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+          {careersContent.apply.description}
+        </p>
+        <ApplicationForm />
+      </div>
     </div>
-  </ContentBlock>
+  </section>
 
   <SimpleCta
     title="Want to join the team?"
-    primaryLabel="Email us"
+    primaryLabel="Apply now"
     primaryHref={careersContent.apply.ctaHref}
     secondaryLabel="About us"
     secondaryHref="/about"

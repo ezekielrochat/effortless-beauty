@@ -1,6 +1,11 @@
-import { siteConfig } from '@/config/site';
+const applyHref = '#apply';
 
-const careersEmailHref = `${siteConfig.contact.emailHref}?subject=Careers%20inquiry`;
+export const applicationOptions = {
+  license: ['Yes', 'No', 'In Progress'],
+  capabilities: ['Hair Styling', 'Makeup', 'Both Hair Styling & Makeup'],
+  availability: ['Part-Time', 'Full-Time'],
+  events: ['2 to 4', '4 to 8', '10+'],
+} as const;
 
 export const careersContent = {
   hero: {
@@ -9,7 +14,7 @@ export const careersContent = {
     titleAccent: 'wedding mornings.',
     description:
       'We are always glad to meet talented hair and makeup artists who care about calm energy, lasting looks, and kind client care.',
-    primaryCta: { label: 'Email your interest', href: careersEmailHref },
+    primaryCta: { label: 'Apply now', href: applyHref },
     secondaryCta: { label: 'About us', href: '/about' },
   },
   culture: {
@@ -48,9 +53,10 @@ export const careersContent = {
     ],
   },
   apply: {
-    title: 'How to reach out',
-    description: `Email ${siteConfig.contact.email} with a short intro, your experience, and a few portfolio links or photos. Tell us if you prefer hair, makeup, or both.`,
-    ctaHref: careersEmailHref,
+    title: 'Apply',
+    description:
+      'Tell us about your work. Applications go straight to the team — no need to start an email.',
+    ctaHref: applyHref,
   },
 } as const;
 

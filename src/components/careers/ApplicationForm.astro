@@ -1,0 +1,123 @@
+---
+import Button from '@/components/ui/Button.astro';
+import { applicationOptions } from '@/config/pages/careers';
+import { siteConfig } from '@/config/site';
+
+const labelClass = 'block text-left text-sm font-medium text-[var(--color-brand-800)]';
+const fieldClass =
+  'mt-2 w-full rounded-xl border border-default bg-white px-4 py-3 text-base text-[var(--color-brand-900)] outline-none transition-colors placeholder:text-[var(--color-brand-400)] focus:border-[var(--color-brand-500)]';
+---
+
+<form action="/api/careers" method="post" data-application-form class="relative mt-10 text-left">
+  <p
+    id="application-error"
+    class="mb-6 hidden rounded-xl border border-[var(--color-gold-600)] bg-[var(--color-accent-muted)] px-4 py-3 text-sm leading-relaxed text-[var(--color-brand-900)]"
+    role="alert"
+    data-fallback-email={siteConfig.contact.email}
+  >
+    Form status
+  </p>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class={labelClass} for="first-name">First name</label>
+      <input class={fieldClass} id="first-name" name="firstName" type="text" autocomplete="given-name" maxlength="80" required />
+    </div>
+    <div>
+      <label class={labelClass} for="last-name">Last name</label>
+      <input class={fieldClass} id="last-name" name="lastName" type="text" autocomplete="family-name" maxlength="80" required />
+    </div>
+    <div>
+      <label class={labelClass} for="phone">Phone number</label>
+      <input class={fieldClass} id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required />
+    </div>
+    <div>
+      <label class={labelClass} for="email">Email</label>
+      <input class={fieldClass} id="email" name="email" type="email" autocomplete="email" maxlength="200" required />
+    </div>
+    <div>
+      <label class={labelClass} for="license">Cosmetology license</label>
+      <select class={fieldClass} id="license" name="license" required>
+        <option value="">Select one...</option>
+        {applicationOptions.license.map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </div>
+    <div>
+      <label class={labelClass} for="capabilities">Capabilities</label>
+      <select class={fieldClass} id="capabilities" name="capabilities" required>
+        <option value="">Select one...</option>
+        {applicationOptions.capabilities.map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </div>
+    <div>
+      <label class={labelClass} for="availability">Full-time or part-time</label>
+      <select class={fieldClass} id="availability" name="availability">
+        <option value="">Select one...</option>
+        {applicationOptions.availability.map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </div>
+    <div>
+      <label class={labelClass} for="events">Preferred number of events per month</label>
+      <select class={fieldClass} id="events" name="events" required>
+        <option value="">Select one...</option>
+        {applicationOptions.events.map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <label class={labelClass} for="experience">Overview of experience</label>
+    <textarea
+      class:list={[fieldClass, 'min-h-36 resize-y']}
+      id="experience"
+      name="experience"
+      maxlength="5000"
+      required
+    />
+  </div>
+
+  <div class="mt-5">
+    <label class={labelClass} for="message">Message</label>
+    <textarea
+      class:list={[fieldClass, 'min-h-36 resize-y']}
+      id="message"
+      name="message"
+      maxlength="5000"
+      required
+    />
+  </div>
+
+  <div class="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden="true">
+    <label for="company-website">Company website</label>
+    <input id="company-website" name="companyWebsite" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="mt-8">
+    <Button type="submit" variant="dark" class="uppercase">
+      Send application
+    </Button>
+  </div>
+</form>
+
+<script>
+  const form = document.querySelector('[data-application-form]');
+  const error = document.getElementById('application-error');
+  const code = new URLSearchParams(location.search).get('error');
+
+  if (error && code) {
+    const fallback = error.dataset.fallbackEmail;
+    error.textContent =
+      code === 'config'
+        ? `The application form is not available right now. Email ${fallback} and we will still get it.`
+        : 'Something went wrong sending that application. Please check the form and try again.';
+    error.classList.remove('hidden');
+  }
+
+  form?.addEventListener('submit', () => {
+    const button = form.querySelector('button[type="submit"]');
+    if (button instanceof HTMLButtonElement) {
+      button.disabled = true;
+      button.textContent = 'Sending…';
+    }
+  });
+</script>

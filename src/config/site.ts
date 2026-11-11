@@ -28,6 +28,15 @@ export const siteConfig = {
     },
   },
 
+  /** Careers applications are emailed to these inboxes. CAREERS_TO_EMAILS overrides this. */
+  careers: {
+    inboxes: [
+      'grace@theeffortlessbeautyco.com',
+      'shanice@theeffortlessbeautyco.com',
+      'caitlynn@theeffortlessbeautyco.com',
+    ],
+  },
+
   booking: {
     honeybookPid: '5f3368999b7da1000d307f49',
     honeybookPlacements: {

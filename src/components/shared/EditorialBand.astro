@@ -17,12 +17,8 @@ const { image, caption, class: className = '' } = Astro.props;
 
 <section class:list={['py-3 sm:py-4', className]}>
   <div class="frame-bleed">
-    <figure class="frame-media">
-      <SiteImage
-        src={image.src}
-        alt={image.alt}
-        class="aspect-[16/9] w-full object-cover object-[center_25%] sm:aspect-[2.4/1] lg:aspect-[2.6/1]"
-      />
+    <figure class="frame-media mx-auto w-fit max-w-full">
+      <SiteImage src={image.src} alt={image.alt} class="frame-photo" />
       {
         caption && (
           <figcaption class="sr-only">{caption}</figcaption>
